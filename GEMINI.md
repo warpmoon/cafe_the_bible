@@ -12,10 +12,10 @@
 # Directory Layout
 
 ```
-handsup/
-├── backend/          # Django 프로젝트 → backend/CLAUDE.md 참조
-├── frontend/         # React 앱 → frontend/CLAUDE.md 참조
-└── docs/             # API 명세 및 문서 → docs/CLAUDE.md 참조
+cafe_the_bible/
+├── backend/          # Django 프로젝트 → backend/GEMINI.md 참조
+├── frontend/         # React 앱 → frontend/GEMINI.md 참조
+└── docs/             # API 명세 및 문서 → docs/GEMINI.md 참조
 ```
 
 # Quick Start
