@@ -1,0 +1,43 @@
+.container {
+  padding: 1.2rem;
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.number {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.bookmark {
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+}
+
+.bookmarkActive {
+  composes: bookmark;
+  color: var(--color-accent);
+}
+
+.text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  word-break: keep-all;
+}
+
+@media (prefers-color-scheme: dark) {
+  .container {
+    background-color: transparent;
+  }
+}

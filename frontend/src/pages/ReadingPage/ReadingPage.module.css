@@ -1,0 +1,93 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding-bottom: 2rem;
+}
+
+.backBtn {
+  align-self: flex-start;
+  color: var(--color-accent);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.reader {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  background-color: var(--color-bg);
+  padding: 1rem 0;
+  z-index: 50;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.settingsBtn {
+  color: var(--color-text-muted);
+}
+
+.settingsPanel {
+  background-color: var(--color-surface);
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.9rem;
+}
+
+.settingsPanel button {
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.activeSize {
+  background-color: var(--color-primary);
+  color: white;
+  border-color: var(--color-primary) !important;
+}
+
+.navFooter {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.navFooter button {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.2rem;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-primary);
+  font-weight: 500;
+}
+
+.navFooter button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Font Size Modifiers */
+.small p { font-size: 0.95rem; }
+.medium p { font-size: 1.1rem; }
+.large p { font-size: 1.3rem; }

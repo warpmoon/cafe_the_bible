@@ -1,0 +1,56 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.navigation {
+  margin-bottom: 1rem;
+}
+
+.backButton {
+  text-decoration: none;
+  color: #3498db;
+}
+
+.title {
+  margin-bottom: 2rem;
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.verseList {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  line-height: 1.8;
+}
+
+.verseItem {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+.verseNum {
+  font-weight: bold;
+  color: #3498db;
+  margin-right: 0.8rem;
+  min-width: 1.5rem;
+  font-size: 0.9rem;
+  margin-top: 0.1rem;
+}
+
+.verseContent {
+  font-size: 1.1rem;
+  color: #444;
+}
+
+@media (max-width: 768px) {
+  .verseList {
+    padding: 1.2rem;
+  }
+  .verseContent {
+    font-size: 1rem;
+  }
+}
