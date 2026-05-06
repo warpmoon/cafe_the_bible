@@ -17,10 +17,10 @@ const ReadingPage: React.FC = () => {
 
   const { data: books, isLoading: booksLoading } = useBooks();
   const selectedBookId = bookId ? parseInt(bookId) : null;
-  const { data: chapters, isLoading: chaptersLoading } = useChapters(selectedBookId || 0);
+  const { data: chapters } = useChapters(selectedBookId || 0);
   
   const currentChapter = chapter ? parseInt(chapter) : null;
-  const { data: verses, isLoading: versesLoading } = useVerses(selectedBookId || 0, currentChapter || 0);
+  const { data: verses } = useVerses(selectedBookId || 0, currentChapter || 0);
 
   const handleBookSelect = (id: number) => {
     navigate(`/read/${id}/1`);

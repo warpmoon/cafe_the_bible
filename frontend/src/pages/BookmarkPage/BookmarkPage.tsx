@@ -7,6 +7,8 @@ import LoadingSpinner from '../../components/Common/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
 import styles from './BookmarkPage.module.css';
 
+import { Verse } from '../../types/bible';
+
 const BookmarkPage: React.FC = () => {
   const { bookmarks, toggleBookmark } = useReadingStore();
   const navigate = useNavigate();
@@ -38,7 +40,7 @@ const BookmarkPage: React.FC = () => {
       )}
 
       <div className={styles.list}>
-        {verses?.map((verse: any) => (
+        {verses?.map((verse: Verse) => (
           <div key={verse.id} className={styles.itemWrapper}>
              <div onClick={() => handleVerseClick(verse.book_id, verse.chapter_number)}>
               <VerseItem 

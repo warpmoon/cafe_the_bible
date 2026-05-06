@@ -4,18 +4,29 @@
 - Framework: React 19 + TypeScript
 - Build Tool: Vite
 - Styling: CSS Modules (`*.module.css`)
-- State Management: Zustand (readingStore.ts 확인됨)
-- Data Fetching: Axios (client.ts 확인됨)
+- State Management: Zustand (`src/store/readingStore.ts`)
+- Data Fetching: Axios (`src/api/client.ts`)
+- Routing: React Router DOM v7
 
-# Directory Structure
-- `src/api/`: API client and endpoint definitions.
-- `src/components/`: Reusable UI components.
-    - `Layout/`: Layout-related components (Sidebar, BottomTabBar).
-    - `Bible/`: Bible-specific components (BookSelector, VerseList, etc.).
-- `src/hooks/`: Custom React hooks (e.g., `useBible`).
-- `src/pages/`: Page-level components.
-- `src/store/`: Global state management.
-- `src/types/`: TypeScript interface/type definitions.
+# State Management (Zustand)
+- `fontSize`: 본문 텍스트 크기 제어 ('small' | 'medium' | 'large')
+- `bookmarks`: 절 ID 배열 기반 북마크 관리
+- `history`: 최근 읽은 성경 구절 기록 (최대 20개)
+- `persist`: 로컬 스토리지를 통한 상태 유지
+
+# Directory Structure & Pages
+- `src/pages/`:
+    - `HomePage`: 구약/신약 권별 목록 (BookSelector 활용)
+    - `ChapterPage`: 권 선택 후 장 목록 표시 (ChapterSelector 활용)
+    - `ReadingPage`: 실제 성경 읽기 화면 (VerseList 활용)
+    - `SearchPage`: 성경 본문 키워드 검색
+    - `BookmarkPage`: 북마크된 구절 모아보기
+    - `TodayPage`: 오늘의 말씀 표시
+    - `VersePage`: 구절 단일 상세 보기
+- `src/components/`:
+    - `Bible/`: `BookSelector`, `ChapterSelector`, `VerseList`, `VerseItem`
+    - `Layout/`: `AppLayout`, `Sidebar`, `BottomTabBar`
+    - `Common/`: `SearchBar`, `LoadingSpinner`
 
 # Key Commands
 ```bash

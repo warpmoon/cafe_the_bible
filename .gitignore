@@ -219,4 +219,4 @@ temp/
 # Vite
 dist/
 dist-ssr/
-*.local
+*.localdeploy.sh

@@ -1,17 +1,15 @@
 import React, { useState } from 'react';
 import { useSearch } from '../../hooks/useBible';
 import SearchBar from '../../components/Common/SearchBar';
-import VerseItem from '../../components/Bible/VerseItem';
 import LoadingSpinner from '../../components/Common/LoadingSpinner';
-import { useReadingStore } from '../../store/readingStore';
 import { useNavigate } from 'react-router-dom';
 import styles from './SearchPage.module.css';
+import { Verse } from '../../types/bible';
 
 const SearchPage: React.FC = () => {
   const [query, setQuery] = useState('');
   const [testament, setTestament] = useState<string | undefined>();
   const navigate = useNavigate();
-  const { bookmarks, toggleBookmark } = useReadingStore();
 
   const { data, isLoading } = useSearch(query, testament);
 
@@ -48,7 +46,7 @@ const SearchPage: React.FC = () => {
       {isLoading && <LoadingSpinner />}
 
       <div className={styles.results}>
-        {data?.results.map((verse: any) => (
+        {data?.results.map((verse: Verse) => (
           <div key={verse.id} className={styles.resultItem} onClick={() => handleResultClick(verse.book_id, verse.chapter_number)}>
             <div className={styles.resultHeader}>
               <span className={styles.reference}>{verse.book_name} {verse.chapter_number}:{verse.number}</span>

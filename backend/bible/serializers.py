@@ -21,7 +21,8 @@ class BookDetailSerializer(serializers.ModelSerializer):
 class VerseSerializer(serializers.ModelSerializer):
     book_name = serializers.ReadOnlyField(source='book.name')
     chapter_number = serializers.ReadOnlyField(source='chapter.number')
+    book_id = serializers.ReadOnlyField(source='book.id')
 
     class Meta:
         model = Verse
-        fields = ['id', 'book_name', 'chapter_number', 'number', 'text']
+        fields = ['id', 'book_id', 'book_name', 'chapter_number', 'number', 'text']

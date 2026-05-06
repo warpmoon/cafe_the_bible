@@ -19,6 +19,7 @@ export interface Chapter {
 
 export interface Verse {
   id: number;
+  book_id: number;
   book_name: string;
   chapter_number: number;
   number: number;
