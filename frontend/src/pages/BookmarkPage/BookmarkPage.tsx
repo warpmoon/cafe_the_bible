@@ -25,8 +25,8 @@ const BookmarkPage: React.FC = () => {
     enabled: bookmarks.length > 0,
   });
 
-  const handleVerseClick = (bookId: number, chapter: number) => {
-    navigate(`/read/${bookId}/${chapter}`);
+  const handleVerseClick = (bookId: number, chapter: number, verse: number) => {
+    navigate(`/read/${bookId}/${chapter}/${verse}`);
   };
 
   return (
@@ -42,7 +42,7 @@ const BookmarkPage: React.FC = () => {
       <div className={styles.list}>
         {verses?.map((verse: Verse) => (
           <div key={verse.id} className={styles.itemWrapper}>
-             <div onClick={() => handleVerseClick(verse.book_id, verse.chapter_number)}>
+             <div onClick={() => handleVerseClick(verse.book_id, verse.chapter_number, verse.number)}>
               <VerseItem 
                 verse={verse} 
                 isBookmarked={true} 

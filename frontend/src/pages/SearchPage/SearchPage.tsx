@@ -13,8 +13,8 @@ const SearchPage: React.FC = () => {
 
   const { data, isLoading } = useSearch(query, testament);
 
-  const handleResultClick = (bookId: number, chapter: number) => {
-    navigate(`/read/${bookId}/${chapter}`);
+  const handleResultClick = (bookId: number, chapter: number, verseNum: number) => {
+    navigate(`/read/${bookId}/${chapter}/${verseNum}`);
   };
 
   return (
@@ -47,7 +47,7 @@ const SearchPage: React.FC = () => {
 
       <div className={styles.results}>
         {data?.results.map((verse: Verse) => (
-          <div key={verse.id} className={styles.resultItem} onClick={() => handleResultClick(verse.book_id, verse.chapter_number)}>
+          <div key={verse.id} className={styles.resultItem} onClick={() => handleResultClick(verse.book_id, verse.chapter_number, verse.number)}>
             <div className={styles.resultHeader}>
               <span className={styles.reference}>{verse.book_name} {verse.chapter_number}:{verse.number}</span>
             </div>
