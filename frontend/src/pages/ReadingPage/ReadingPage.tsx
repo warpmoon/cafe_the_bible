@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useBooks, useChapters, useVerses } from '../../hooks/useBible';
 import { useReadingStore, FontSize } from '../../store/readingStore';
 import BookSelector from '../../components/Bible/BookSelector';
 import ChapterSelector from '../../components/Bible/ChapterSelector';
+import VerseSelector from '../../components/Bible/VerseSelector';
 import VerseList from '../../components/Bible/VerseList';
 import Skeleton from '../../components/Common/Skeleton';
-import { ChevronLeft, ChevronRight, Settings, AlertCircle } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Settings, AlertCircle, ArrowLeft } from 'lucide-react';
 import styles from './ReadingPage.module.css';
 
 const ReadingPageSkeleton: React.FC = () => (
@@ -24,24 +25,42 @@ const ReadingPageSkeleton: React.FC = () => (
 );
 
 const ReadingPage: React.FC = () => {
-  const { bookId, chapter } = useParams<{ bookId: string; chapter: string }>();
+  const { bookId, chapter, verse } = useParams<{ bookId: string; chapter: string; verse: string }>();
   const navigate = useNavigate();
   const { fontSize, setFontSize } = useReadingStore();
   const [showSettings, setShowSettings] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { data: books, isLoading: booksLoading, error: booksError } = useBooks();
   const selectedBookId = bookId ? parseInt(bookId) : null;
   const { data: chapters, error: chaptersError } = useChapters(selectedBookId || 0);
   
   const currentChapter = chapter ? parseInt(chapter) : null;
+  const currentVerse = verse ? parseInt(verse) : null;
   const { data: verses, isLoading: versesLoading, error: versesError } = useVerses(selectedBookId || 0, currentChapter || 0);
 
+  useEffect(() => {
+    if (currentVerse && verses && containerRef.current) {
+      // Small delay to ensure DOM is rendered
+      setTimeout(() => {
+        const element = document.getElementById(`verse-${currentVerse}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+    }
+  }, [currentVerse, verses]);
+
   const handleBookSelect = (id: number) => {
-    navigate(`/read/${id}/1`);
+    navigate(`/read/${id}`);
   };
 
   const handleChapterSelect = (num: number) => {
     navigate(`/read/${bookId}/${num}`);
+  };
+
+  const handleVerseSelect = (num: number) => {
+    navigate(`/read/${bookId}/${chapter}/${num}`);
   };
 
   const navigateChapter = (direction: 'prev' | 'next') => {
@@ -67,28 +86,70 @@ const ReadingPage: React.FC = () => {
     return <ReadingPageSkeleton />;
   }
 
-  return (
-    <div className={`${styles.container} ${styles[fontSize]}`}>
-      {!selectedBookId && books && (
+  // Book Selection Phase
+  if (!selectedBookId && books) {
+    return (
+      <div className={styles.container}>
+        <header className={styles.selectionHeader}>
+          <h1>성경 선택</h1>
+        </header>
         <BookSelector books={books} onSelect={handleBookSelect} />
-      )}
+      </div>
+    );
+  }
 
-      {selectedBookId && !currentChapter && chapters && (
-        <>
-          <button className={styles.backBtn} onClick={() => navigate('/read')}>&larr; 책 선택</button>
-          <ChapterSelector chapters={chapters} onSelect={handleChapterSelect} />
-        </>
-      )}
+  // Chapter Selection Phase
+  if (selectedBookId && !currentChapter && chapters) {
+    const selectedBook = books?.OT.find(b => b.id === selectedBookId) || books?.NT.find(b => b.id === selectedBookId);
+    return (
+      <div className={styles.container}>
+        <header className={styles.selectionHeader}>
+          <button className={styles.backBtn} onClick={() => navigate('/read')}>
+            <ArrowLeft size={20} />
+          </button>
+          <h1>{selectedBook?.name} - 장 선택</h1>
+        </header>
+        <ChapterSelector chapters={chapters} onSelect={handleChapterSelect} />
+      </div>
+    );
+  }
 
-      {selectedBookId && currentChapter && verses && (
+  // Verse Selection Phase (Optional intermediate step)
+  // If chapter is selected but verse is not, we show verse selector
+  // OR we can just show the whole chapter. The user asked for "Book -> Chapter -> Verse selection flow"
+  if (selectedBookId && currentChapter && !currentVerse && verses) {
+    return (
+      <div className={styles.container}>
+        <header className={styles.selectionHeader}>
+          <button className={styles.backBtn} onClick={() => navigate(`/read/${bookId}`)}>
+            <ArrowLeft size={20} />
+          </button>
+          <h1>{verses[0]?.book_name} {currentChapter}장 - 절 선택</h1>
+        </header>
+        <VerseSelector verses={verses} onSelect={handleVerseSelect} />
+        <div className={styles.fullChapterBtnContainer}>
+          <button className={styles.fullChapterBtn} onClick={() => navigate(`/read/${bookId}/${chapter}/1`)}>
+            1절부터 읽기
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // Reading Phase
+  return (
+    <div className={`${styles.container} ${styles[fontSize]}`} ref={containerRef}>
+      {verses && (
         <div className={styles.reader}>
           <header className={styles.header}>
-            <button onClick={() => navigate('/read')} className={styles.title}>
-              {verses[0]?.book_name} {currentChapter}장
+            <button onClick={() => navigate(`/read/${bookId}/${currentChapter}`)} className={styles.title}>
+              {verses[0]?.book_name} {currentChapter}장 {currentVerse ? `${currentVerse}절` : ''}
             </button>
-            <button onClick={() => setShowSettings(!showSettings)} className={styles.settingsBtn}>
-              <Settings size={20} />
-            </button>
+            <div className={styles.headerActions}>
+              <button onClick={() => setShowSettings(!showSettings)} className={styles.settingsBtn}>
+                <Settings size={20} />
+              </button>
+            </div>
           </header>
 
           {showSettings && (

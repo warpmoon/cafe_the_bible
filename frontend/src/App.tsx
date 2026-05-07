@@ -18,7 +18,9 @@ function App() {
           <Route path="/" element={<Navigate to="/read" replace />} />
           <Route path="/today" element={<TodayPage />} />
           <Route path="/read" element={<ReadingPage />} />
+          <Route path="/read/:bookId" element={<ReadingPage />} />
           <Route path="/read/:bookId/:chapter" element={<ReadingPage />} />
+          <Route path="/read/:bookId/:chapter/:verse" element={<ReadingPage />} />
           <Route path="/search" element={<SearchPage />} />
           <Route path="/bookmarks" element={<BookmarkPage />} />
         </Routes>

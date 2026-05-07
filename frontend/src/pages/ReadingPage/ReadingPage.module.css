@@ -33,11 +33,34 @@
   font-weight: 500;
 }
 
-.backBtn {
-  align-self: flex-start;
-  color: var(--color-accent);
-  font-weight: 500;
+.selectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
   margin-bottom: 1rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.selectionHeader h1 {
+  font-size: 1.5rem;
+  color: var(--color-text-primary);
+}
+
+.backBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-bg-secondary);
+  color: var(--color-text-primary);
+  transition: background-color 0.2s;
+}
+
+.backBtn:hover {
+  background-color: var(--color-border);
 }
 
 .reader {
@@ -62,10 +85,17 @@
   font-size: 1.2rem;
   font-weight: 700;
   color: var(--color-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
 }
 
 .settingsBtn {
   color: var(--color-text-muted);
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .settingsPanel {
@@ -83,6 +113,8 @@
   padding: 0.3rem 0.6rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
+  background: none;
+  cursor: pointer;
 }
 
 .activeSize {
@@ -108,11 +140,28 @@
   border-radius: var(--radius-md);
   color: var(--color-primary);
   font-weight: 500;
+  cursor: pointer;
 }
 
 .navFooter button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.fullChapterBtnContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.fullChapterBtn {
+  padding: 1rem 2rem;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
 /* Font Size Modifiers */

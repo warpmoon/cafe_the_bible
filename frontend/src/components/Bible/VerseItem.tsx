@@ -11,7 +11,7 @@ interface VerseItemProps {
 
 const VerseItem: React.FC<VerseItemProps> = ({ verse, isBookmarked, onToggleBookmark }) => {
   return (
-    <div className={styles.container}>
+    <div className={styles.container} id={`verse-${verse.number}`}>
       <div className={styles.header}>
         <span className={styles.number}>{verse.number}</span>
         <button

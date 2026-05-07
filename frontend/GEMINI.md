@@ -16,15 +16,13 @@
 
 # Directory Structure & Pages
 - `src/pages/`:
-    - `HomePage`: 구약/신약 권별 목록 (BookSelector 활용)
-    - `ChapterPage`: 권 선택 후 장 목록 표시 (ChapterSelector 활용)
-    - `ReadingPage`: 실제 성경 읽기 화면 (VerseList 활용)
+    - `ReadingPage`: 성경 읽기 및 권/장/절 선택 통합 화면
     - `SearchPage`: 성경 본문 키워드 검색
     - `BookmarkPage`: 북마크된 구절 모아보기
     - `TodayPage`: 오늘의 말씀 표시
     - `VersePage`: 구절 단일 상세 보기
 - `src/components/`:
-    - `Bible/`: `BookSelector`, `ChapterSelector`, `VerseList`, `VerseItem`
+    - `Bible/`: `BookSelector`, `ChapterSelector`, `VerseSelector`, `VerseList`, `VerseItem`
     - `Layout/`: `AppLayout`, `Sidebar`, `BottomTabBar`
     - `Common/`: `SearchBar`, `LoadingSpinner`
 
@@ -47,3 +45,4 @@ npm run lint
 - Functional Components + Hooks 선호
 - Props Type 정의 필수
 - CSS Modules를 사용한 스타일링 (CamelCase 클래스명 권장)
+- 스타일링 설계 및 수정 시 `src/styles/variables.css`에 정의된 전역 변수를 반드시 참고하고 일관성 있게 사용

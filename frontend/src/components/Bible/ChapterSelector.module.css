@@ -1,18 +1,18 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--space-md);
 }
 
 .title {
-  font-size: 1.1rem;
+  font-size: var(--size-h3);
   font-weight: 500;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
-  gap: 0.8rem;
+  gap: var(--space-sm);
 }
 
 .chapterItem {
@@ -23,7 +23,7 @@
   justify-content: center;
   align-items: center;
   border-radius: var(--radius-md);
-  font-size: 1rem;
+  font-size: var(--size-body);
   color: var(--color-text);
   transition: all 0.2s;
 }
