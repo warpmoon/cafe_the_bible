@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { BookOpen, Search, Bookmark, Calendar } from "lucide-react";
+import { BookOpen, Search, Bookmark, Calendar, Sun, Moon } from "lucide-react";
+import { useReadingStore } from "../../store/readingStore";
 import styles from "./Sidebar.module.css";
 
 const Sidebar: React.FC = () => {
+  const { theme, toggleTheme } = useReadingStore();
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.logo}>Cafe the Bible</div>
@@ -45,6 +48,22 @@ const Sidebar: React.FC = () => {
           <span>오늘의 말씀</span>
         </NavLink>
       </nav>
+      
+      <div className={styles.footer}>
+        <button className={styles.themeToggle} onClick={toggleTheme}>
+          {theme === 'light' ? (
+            <>
+              <Moon size={20} />
+              <span>다크 모드</span>
+            </>
+          ) : (
+            <>
+              <Sun size={20} />
+              <span>라이트 모드</span>
+            </>
+          )}
+        </button>
+      </div>
     </aside>
   );
 };

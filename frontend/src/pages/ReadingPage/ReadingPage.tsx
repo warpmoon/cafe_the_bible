@@ -5,9 +5,23 @@ import { useReadingStore, FontSize } from '../../store/readingStore';
 import BookSelector from '../../components/Bible/BookSelector';
 import ChapterSelector from '../../components/Bible/ChapterSelector';
 import VerseList from '../../components/Bible/VerseList';
-import LoadingSpinner from '../../components/Common/LoadingSpinner';
-import { ChevronLeft, ChevronRight, Settings } from 'lucide-react';
+import Skeleton from '../../components/Common/Skeleton';
+import { ChevronLeft, ChevronRight, Settings, AlertCircle } from 'lucide-react';
 import styles from './ReadingPage.module.css';
+
+const ReadingPageSkeleton: React.FC = () => (
+  <div className={styles.container}>
+    <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem' }}>
+      <Skeleton width="100px" height="40px" borderRadius="20px" />
+      <Skeleton width="100px" height="40px" borderRadius="20px" />
+    </div>
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', gap: '1rem' }}>
+      {Array(20).fill(0).map((_, i) => (
+        <Skeleton key={i} height="50px" />
+      ))}
+    </div>
+  </div>
+);
 
 const ReadingPage: React.FC = () => {
   const { bookId, chapter } = useParams<{ bookId: string; chapter: string }>();
@@ -15,12 +29,12 @@ const ReadingPage: React.FC = () => {
   const { fontSize, setFontSize } = useReadingStore();
   const [showSettings, setShowSettings] = useState(false);
 
-  const { data: books, isLoading: booksLoading } = useBooks();
+  const { data: books, isLoading: booksLoading, error: booksError } = useBooks();
   const selectedBookId = bookId ? parseInt(bookId) : null;
-  const { data: chapters } = useChapters(selectedBookId || 0);
+  const { data: chapters, error: chaptersError } = useChapters(selectedBookId || 0);
   
   const currentChapter = chapter ? parseInt(chapter) : null;
-  const { data: verses } = useVerses(selectedBookId || 0, currentChapter || 0);
+  const { data: verses, isLoading: versesLoading, error: versesError } = useVerses(selectedBookId || 0, currentChapter || 0);
 
   const handleBookSelect = (id: number) => {
     navigate(`/read/${id}/1`);
@@ -38,7 +52,20 @@ const ReadingPage: React.FC = () => {
     }
   };
 
-  if (booksLoading) return <LoadingSpinner />;
+  if (booksError || chaptersError || versesError) {
+    return (
+      <div className={styles.errorContainer}>
+        <AlertCircle size={48} color="var(--color-error)" />
+        <h2>데이터를 불러오지 못했습니다</h2>
+        <p>서버 연결 상태를 확인하거나 잠시 후 다시 시도해주세요.</p>
+        <button onClick={() => window.location.reload()}>다시 시도</button>
+      </div>
+    );
+  }
+
+  if (booksLoading || (selectedBookId && currentChapter && versesLoading)) {
+    return <ReadingPageSkeleton />;
+  }
 
   return (
     <div className={`${styles.container} ${styles[fontSize]}`}>

@@ -5,7 +5,7 @@
 
 .backButton {
   text-decoration: none;
-  color: #3498db;
+  color: var(--color-accent);
   margin-bottom: 1rem;
   display: inline-block;
 }
@@ -21,18 +21,18 @@
 }
 
 .chapterCard {
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   padding: 1rem;
   text-align: center;
   text-decoration: none;
-  color: #2c3e50;
+  color: var(--color-text);
   transition: all 0.2s;
 }
 
 .chapterCard:hover {
-  background-color: #3498db;
-  color: white;
-  border-color: #3498db;
+  background-color: var(--color-accent);
+  color: var(--color-on-accent);
+  border-color: var(--color-accent);
 }

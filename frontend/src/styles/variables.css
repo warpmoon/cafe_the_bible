@@ -12,6 +12,10 @@
   --color-success: #27ae60;
   --color-error: #e74c3c;
 
+  /* On-Colors (Text on specific backgrounds) */
+  --color-on-primary: #ffffff;
+  --color-on-accent: #ffffff;
+
   /* Spacing */
   --space-unit: 1rem;
   --space-xs: 0.25rem;
@@ -40,5 +44,44 @@
   
   /* Layout */
   --max-width: 800px;
+  --sidebar-width: 240px;
+  --tabbar-height: 64px;
   --header-height: 60px;
+
+  /* Sidebar */
+  --sidebar-bg: #2c3e50;
+  --sidebar-text: #ffffff;
+  --sidebar-text-muted: rgba(255, 255, 255, 0.7);
+  --sidebar-hover: rgba(255, 255, 255, 0.1);
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-active-bg: var(--color-accent);
+  --sidebar-active-text: #2c3e50;
+
+  /* Additional UI */
+  --color-surface: #ffffff;
+}
+
+[data-theme='dark'] {
+  --color-primary: #ecf0f1;
+  --color-primary-light: #bdc3c7;
+  --color-accent: #3498db;
+  --color-bg: #1a1a1a;
+  --color-card: #2c2c2c;
+  --color-surface: #2c2c2c;
+  --color-text: #f8f9fa;
+  --color-text-muted: #bdc3c7;
+  --color-border: #3d3d3d;
+
+  /* On-Colors Dark */
+  --color-on-primary: #2c3e50;
+  --color-on-accent: #ffffff;
+
+  /* Sidebar Dark */
+  --sidebar-bg: #121212;
+  --sidebar-text: #f8f9fa;
+  --sidebar-text-muted: #bdc3c7;
+  --sidebar-hover: rgba(255, 255, 255, 0.05);
+  --sidebar-border: #3d3d3d;
+  --sidebar-active-bg: var(--color-accent);
+  --sidebar-active-text: #f8f9fa;
 }

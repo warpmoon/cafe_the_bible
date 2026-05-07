@@ -16,7 +16,10 @@ const VerseItem: React.FC<VerseItemProps> = ({ verse, isBookmarked, onToggleBook
         <span className={styles.number}>{verse.number}</span>
         <button
           className={isBookmarked ? styles.bookmarkActive : styles.bookmark}
-          onClick={() => onToggleBookmark(verse.id)}
+          onClick={(e) => {
+            e.stopPropagation();
+            onToggleBookmark(verse.id);
+          }}
         >
           <Bookmark size={18} fill={isBookmarked ? 'currentColor' : 'none'} />
         </button>

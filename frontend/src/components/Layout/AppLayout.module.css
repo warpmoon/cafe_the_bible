@@ -6,7 +6,7 @@
 .main {
   flex: 1;
   padding-bottom: var(--tabbar-height);
-  width: 100%;
+  min-width: 0; /* Prevents flex items from overflowing */
 }
 
 .content {

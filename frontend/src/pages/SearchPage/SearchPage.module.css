@@ -30,7 +30,7 @@
 
 .activeFilter {
   background-color: var(--color-primary) !important;
-  color: white;
+  color: var(--color-on-primary);
   border-color: var(--color-primary) !important;
 }
 
