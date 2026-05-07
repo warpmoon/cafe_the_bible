@@ -4,7 +4,7 @@
 - Goal: 기술 역량 개발, 실험
 - Timeline: 유연함, 속도보다 품질 중시
 
-# Current Status (2026-05-06 기준)
+# Current Status (2026-05-07 기준)
 
 ## Backend (Implemented)
 - **Data Model**: Book, Chapter, Verse 모델 구현 (성경/장/절 구조)
@@ -22,14 +22,17 @@
     - `HomePage`: 구약/신약 목록 및 네비게이션
     - `ChapterPage`: 특정 책의 장 선택
     - `ReadingPage`: 성경 본문 읽기 (장 단위)
-    - `SearchPage`: 키워드 기반 성경 검색
-    - `BookmarkPage`: 즐겨찾기 목록
+    - `SearchPage`: 키워드 기반 성경 검색 (검색 결과 클릭 시 해당 위치로 즉시 이동)
+    - `BookmarkPage`: 즐겨찾기 목록 (북마크 클릭 시 해당 위치로 즉시 이동)
     - `TodayPage`: 오늘의 말씀 및 묵상
     - `VersePage`: 특정 구절 상세 보기
 - **State Management (Zustand)**:
     - 폰트 크기 설정 (small, medium, large)
     - 북마크 기능 (로컬 스토리지 유지)
     - 최근 읽은 기록 (History) 관리
+- **Aesthetics & UX**:
+    - 브라우저 탭 이름('Cafe_the_bible') 및 파비콘 적용
+    - 성경 구절 이동 시 불필요한 강조 애니메이션 제거 (즉시 포커싱 유지)
 - **Components**:
     - `AppLayout`: 사이드바 및 하단 탭바를 포함한 반응형 레이아웃
     - `VerseList`, `BookSelector` 등 도메인 특화 컴포넌트
