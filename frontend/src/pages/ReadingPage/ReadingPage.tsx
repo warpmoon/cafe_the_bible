@@ -27,7 +27,7 @@ const ReadingPageSkeleton: React.FC = () => (
 const ReadingPage: React.FC = () => {
   const { bookId, chapter, verse } = useParams<{ bookId: string; chapter: string; verse: string }>();
   const navigate = useNavigate();
-  const { fontSize, setFontSize } = useReadingStore();
+  const { fontSize, setFontSize, setReading } = useReadingStore();
   const [showSettings, setShowSettings] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -50,6 +50,12 @@ const ReadingPage: React.FC = () => {
       }, 100);
     }
   }, [currentVerse, verses]);
+
+  useEffect(() => {
+    if (selectedBookId && currentChapter && currentVerse) {
+      setReading(selectedBookId, currentChapter);
+    }
+  }, [selectedBookId, currentChapter, currentVerse, setReading]);
 
   const handleBookSelect = (id: number) => {
     navigate(`/read/${id}`);

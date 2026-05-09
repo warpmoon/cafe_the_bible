@@ -2,9 +2,9 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Navigate,
 } from "react-router-dom";
 import AppLayout from "./components/Layout/AppLayout";
+import HomePage from "./pages/HomePage";
 import TodayPage from "./pages/TodayPage/TodayPage";
 import ReadingPage from "./pages/ReadingPage/ReadingPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
@@ -15,7 +15,7 @@ function App() {
     <Router>
       <AppLayout>
         <Routes>
-          <Route path="/" element={<Navigate to="/read" replace />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/today" element={<TodayPage />} />
           <Route path="/read" element={<ReadingPage />} />
           <Route path="/read/:bookId" element={<ReadingPage />} />

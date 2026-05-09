@@ -18,6 +18,7 @@
   font-weight: bold;
   color: var(--color-accent);
   padding-left: 0.5rem;
+  text-decoration: none;
 }
 
 .nav {

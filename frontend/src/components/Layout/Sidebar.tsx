@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { BookOpen, Search, Bookmark, Calendar, Sun, Moon } from "lucide-react";
+import { BookOpen, Search, Bookmark, Calendar, Sun, Moon, Home } from "lucide-react";
 import { useReadingStore } from "../../store/readingStore";
 import styles from "./Sidebar.module.css";
 
@@ -9,10 +9,20 @@ const Sidebar: React.FC = () => {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.logo}>Cafe the Bible</div>
+      <NavLink to="/" className={styles.logo}>Cafe the Bible</NavLink>
       <nav className={styles.nav}>
         <NavLink
           to="/"
+          end
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.link
+          }
+        >
+          <Home size={20} />
+          <span>홈</span>
+        </NavLink>
+        <NavLink
+          to="/read"
           className={({ isActive }) =>
             isActive ? styles.activeLink : styles.link
           }

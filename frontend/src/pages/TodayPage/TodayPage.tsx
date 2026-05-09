@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useRandomVerse } from '../../hooks/useBible';
+import { useReadingStore } from '../../store/readingStore';
 import LoadingSpinner from '../../components/Common/LoadingSpinner';
 import { 
   Share2, 
@@ -7,7 +8,8 @@ import {
   MoreVertical, 
   Download, 
   Smartphone, 
-  Monitor 
+  Monitor,
+  CheckCircle2
 } from 'lucide-react';
 import { toJpeg } from 'html-to-image';
 import styles from './TodayPage.module.css';
@@ -18,10 +20,18 @@ import bgVertical from '../../assets/images/todaypage/card-coffee_h1.jpg';
 
 const TodayPage: React.FC = () => {
   const { data: verse, isLoading, refetch, isFetching } = useRandomVerse();
+  const { devotions, saveDevotion } = useReadingStore();
   const [layout, setLayout] = useState<'horizontal' | 'vertical'>('horizontal');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [draft, setDraft] = useState<Partial<Record<'reflection' | 'prayer' | 'action', string>>>({});
+  const [savedAt, setSavedAt] = useState<number | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
+  const todayKey = new Date().toISOString().slice(0, 10);
+  const savedDevotion = devotions[todayKey];
+  const reflection = draft.reflection ?? savedDevotion?.reflection ?? '';
+  const prayer = draft.prayer ?? savedDevotion?.prayer ?? '';
+  const action = draft.action ?? savedDevotion?.action ?? '';
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -88,6 +98,29 @@ const TodayPage: React.FC = () => {
   const toggleLayout = () => {
     setLayout(prev => prev === 'horizontal' ? 'vertical' : 'horizontal');
     setIsMenuOpen(false);
+  };
+
+  const handleSaveDevotion = () => {
+    if (!verse) return;
+
+    const updatedAt = Date.now();
+    saveDevotion({
+      date: todayKey,
+      verseId: verse.id,
+      reference: `${verse.book_name} ${verse.chapter_number}:${verse.number}`,
+      verseText: verse.text,
+      reflection,
+      prayer,
+      action,
+      updatedAt,
+    });
+    setDraft({});
+    setSavedAt(updatedAt);
+  };
+
+  const updateDraft = (field: 'reflection' | 'prayer' | 'action', value: string) => {
+    setDraft((current) => ({ ...current, [field]: value }));
+    setSavedAt(null);
   };
 
   const todayStr = new Date().toLocaleDateString('ko-KR', {
@@ -166,6 +199,57 @@ const TodayPage: React.FC = () => {
               <RefreshCw size={20} />
             </button>
           </div>
+
+          <section className={styles.devotionPanel} aria-labelledby="devotion-title">
+            <div className={styles.devotionHeader}>
+              <div>
+                <span className={styles.eyebrow}>Daily reflection</span>
+                <h2 id="devotion-title">오늘의 묵상</h2>
+              </div>
+              {savedAt && (
+                <span className={styles.savedState}>
+                  <CheckCircle2 size={16} />
+                  저장됨
+                </span>
+              )}
+            </div>
+
+            <label className={styles.field}>
+              <span>말씀이 오늘 내게 주는 의미</span>
+              <textarea
+                value={reflection}
+                onChange={(event) => updateDraft('reflection', event.target.value)}
+                placeholder="말씀을 읽으며 떠오른 생각을 적어보세요."
+                rows={4}
+              />
+            </label>
+
+            <div className={styles.fieldGrid}>
+              <label className={styles.field}>
+                <span>기도 제목</span>
+                <textarea
+                  value={prayer}
+                  onChange={(event) => updateDraft('prayer', event.target.value)}
+                  placeholder="오늘의 기도를 적어보세요."
+                  rows={3}
+                />
+              </label>
+
+              <label className={styles.field}>
+                <span>오늘의 실천</span>
+                <textarea
+                  value={action}
+                  onChange={(event) => updateDraft('action', event.target.value)}
+                  placeholder="작게 실천할 한 가지를 적어보세요."
+                  rows={3}
+                />
+              </label>
+            </div>
+
+            <button className={styles.saveBtn} onClick={handleSaveDevotion}>
+              묵상 저장
+            </button>
+          </section>
         </>
       )}
     </div>
