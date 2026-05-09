@@ -23,6 +23,12 @@
   gap: 0.5rem;
   overflow-x: auto;
   padding-bottom: 0.15rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.filters::-webkit-scrollbar {
+  display: none;
 }
 
 .filter,
@@ -34,6 +40,8 @@
   background-color: var(--color-surface);
   color: var(--color-text-muted);
   font-size: var(--size-small);
+  white-space: nowrap;
+  min-height: 38px;
 }
 
 .activeFilter {
@@ -113,4 +121,30 @@
   background-color: var(--color-bg);
   color: var(--color-text-muted);
   font-size: 0.75rem;
+}
+
+@media (max-width: 767px) {
+  .page {
+    gap: 0.85rem;
+  }
+
+  .header h1 {
+    font-size: 1.6rem;
+  }
+
+  .header p {
+    font-size: 0.95rem;
+  }
+
+  .card {
+    padding: 0.9rem;
+  }
+
+  .cardHeader {
+    align-items: flex-start;
+  }
+
+  .iconBox {
+    flex: 0 0 auto;
+  }
 }

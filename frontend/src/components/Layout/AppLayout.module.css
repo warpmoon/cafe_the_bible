@@ -13,6 +13,18 @@
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 1rem;
+  overflow-x: hidden;
+}
+
+@media (max-width: 767px) {
+  .main {
+    padding-bottom: 0;
+  }
+
+  .content {
+    padding: 0.875rem;
+    padding-bottom: calc(var(--tabbar-height) + 1rem);
+  }
 }
 
 @media (min-width: 768px) {
