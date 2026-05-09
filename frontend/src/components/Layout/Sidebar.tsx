@@ -1,11 +1,25 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { BookOpen, Search, Bookmark, Calendar, Sun, Moon, Home } from "lucide-react";
+import { NavLink, useLocation } from "react-router-dom";
+import {
+  BookOpen,
+  Search,
+  Bookmark,
+  Calendar,
+  Sun,
+  Moon,
+  Home,
+  LibraryBig,
+  MapPinned,
+  UsersRound,
+  CalendarDays,
+} from "lucide-react";
 import { useReadingStore } from "../../store/readingStore";
 import styles from "./Sidebar.module.css";
 
 const Sidebar: React.FC = () => {
   const { theme, toggleTheme } = useReadingStore();
+  const location = useLocation();
+  const isReferenceActive = location.pathname.startsWith("/reference") || location.pathname === "/map";
 
   return (
     <aside className={styles.sidebar}>
@@ -48,6 +62,44 @@ const Sidebar: React.FC = () => {
           <Bookmark size={20} />
           <span>북마크</span>
         </NavLink>
+        <div className={styles.navGroup}>
+          <NavLink
+            to="/reference/map"
+            className={isReferenceActive ? styles.activeLink : styles.link}
+          >
+            <LibraryBig size={20} />
+            <span>참고자료</span>
+          </NavLink>
+          <div className={styles.subNav}>
+            <NavLink
+              to="/reference/map"
+              className={({ isActive }) =>
+                isActive ? styles.activeSubLink : styles.subLink
+              }
+            >
+              <MapPinned size={16} />
+              <span>지도맵</span>
+            </NavLink>
+            <NavLink
+              to="/reference/people"
+              className={({ isActive }) =>
+                isActive ? styles.activeSubLink : styles.subLink
+              }
+            >
+              <UsersRound size={16} />
+              <span>인물 정보</span>
+            </NavLink>
+            <NavLink
+              to="/reference/festivals"
+              className={({ isActive }) =>
+                isActive ? styles.activeSubLink : styles.subLink
+              }
+            >
+              <CalendarDays size={16} />
+              <span>절기 정보</span>
+            </NavLink>
+          </div>
+        </div>
         <NavLink
           to="/today"
           className={({ isActive }) =>

@@ -56,6 +56,43 @@
   color: var(--sidebar-active-text);
 }
 
+.navGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.subNav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding-left: 1rem;
+}
+
+.subLink {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.75rem;
+  text-decoration: none;
+  color: var(--sidebar-text-muted);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.subLink:hover {
+  background-color: var(--sidebar-hover);
+  color: var(--sidebar-text);
+}
+
+.activeSubLink {
+  composes: subLink;
+  color: var(--sidebar-text);
+  background-color: var(--sidebar-hover);
+  font-weight: 600;
+}
+
 .footer {
   margin-top: auto;
   padding-top: 1rem;
