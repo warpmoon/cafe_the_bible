@@ -1,0 +1,225 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: 1rem 0;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.date {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.header h1 {
+  color: var(--color-primary);
+  font-size: 1.8rem;
+}
+
+.calendarPanel,
+.entry,
+.emptyState {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
+
+.calendarPanel {
+  padding: var(--space-md);
+}
+
+.monthHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.monthHeader strong {
+  color: var(--color-text);
+  font-size: var(--size-h3);
+}
+
+.monthHeader button {
+  width: 2.4rem;
+  height: 2.4rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  background: var(--color-bg);
+  cursor: pointer;
+}
+
+.weekdays,
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+
+.weekdays {
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: var(--space-xs);
+}
+
+.weekdays span {
+  padding: var(--space-sm) 0;
+}
+
+.calendarGrid {
+  gap: var(--space-xs);
+}
+
+.dayCell {
+  min-height: 6rem;
+  padding: var(--space-sm);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+.mutedDay {
+  opacity: 0.45;
+}
+
+.dayNumber {
+  display: block;
+  margin-bottom: var(--space-sm);
+  color: var(--color-text);
+  font-size: var(--size-small);
+  font-weight: 700;
+}
+
+.devotionLabel {
+  width: 100%;
+  padding: 0.28rem 0.4rem;
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entryList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.entry {
+  padding: var(--space-lg);
+}
+
+.entryHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.entryDate {
+  display: block;
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+  margin-bottom: var(--space-xs);
+}
+
+.entry h2 {
+  color: var(--color-text);
+  font-size: var(--size-h3);
+  word-break: keep-all;
+}
+
+.colorPicker {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.colorPicker input {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: transparent;
+  cursor: pointer;
+}
+
+.verseText {
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+  border-left: 4px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.devotionText {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.devotionText div {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.devotionText dt {
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.devotionText dd {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
+.emptyState {
+  padding: var(--space-xl);
+  color: var(--color-text-muted);
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .calendarPanel {
+    padding: var(--space-sm);
+  }
+
+  .dayCell {
+    min-height: 4.8rem;
+    padding: 0.35rem;
+  }
+
+  .devotionLabel {
+    font-size: 0.68rem;
+  }
+
+  .entryHeader {
+    flex-direction: column;
+  }
+}

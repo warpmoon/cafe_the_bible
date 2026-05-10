@@ -12,6 +12,9 @@ import {
   MapPinned,
   UsersRound,
   CalendarDays,
+  CalendarCheck,
+  ClipboardCheck,
+  NotebookPen,
 } from "lucide-react";
 import { useReadingStore } from "../../store/readingStore";
 import styles from "./Sidebar.module.css";
@@ -20,6 +23,7 @@ const Sidebar: React.FC = () => {
   const { theme, toggleTheme } = useReadingStore();
   const location = useLocation();
   const isReferenceActive = location.pathname.startsWith("/reference") || location.pathname === "/map";
+  const isTodayActive = location.pathname.startsWith("/today");
 
   return (
     <aside className={styles.sidebar}>
@@ -100,15 +104,44 @@ const Sidebar: React.FC = () => {
             </NavLink>
           </div>
         </div>
-        <NavLink
-          to="/today"
-          className={({ isActive }) =>
-            isActive ? styles.activeLink : styles.link
-          }
-        >
-          <Calendar size={20} />
-          <span>오늘의 말씀</span>
-        </NavLink>
+        <div className={styles.navGroup}>
+          <NavLink
+            to="/today/word"
+            className={isTodayActive ? styles.activeLink : styles.link}
+          >
+            <Calendar size={20} />
+            <span>오늘의 말씀</span>
+          </NavLink>
+          <div className={styles.subNav}>
+            <NavLink
+              to="/today/word"
+              className={({ isActive }) =>
+                isActive ? styles.activeSubLink : styles.subLink
+              }
+            >
+              <CalendarCheck size={16} />
+              <span>오늘의 말씀</span>
+            </NavLink>
+            <NavLink
+              to="/today/journal"
+              className={({ isActive }) =>
+                isActive ? styles.activeSubLink : styles.subLink
+              }
+            >
+              <NotebookPen size={16} />
+              <span>예수 동행일기</span>
+            </NavLink>
+            <NavLink
+              to="/today/check"
+              className={({ isActive }) =>
+                isActive ? styles.activeSubLink : styles.subLink
+              }
+            >
+              <ClipboardCheck size={16} />
+              <span>오늘의 신앙 체크</span>
+            </NavLink>
+          </div>
+        </div>
       </nav>
       
       <div className={styles.footer}>

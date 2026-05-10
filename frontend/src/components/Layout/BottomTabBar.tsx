@@ -6,6 +6,7 @@ import styles from './BottomTabBar.module.css';
 const BottomTabBar: React.FC = () => {
   const location = useLocation();
   const isReferenceActive = location.pathname.startsWith('/reference') || location.pathname === '/map';
+  const isTodayActive = location.pathname.startsWith('/today');
 
   return (
     <nav className={styles.nav}>
@@ -29,7 +30,7 @@ const BottomTabBar: React.FC = () => {
         <LibraryBig size={24} />
         <span>자료</span>
       </NavLink>
-      <NavLink to="/today" className={({ isActive }) => isActive ? styles.activeItem : styles.item}>
+      <NavLink to="/today/word" className={isTodayActive ? styles.activeItem : styles.item}>
         <Calendar size={24} />
         <span>오늘</span>
       </NavLink>

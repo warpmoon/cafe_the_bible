@@ -7,6 +7,8 @@ import {
 import AppLayout from "./components/Layout/AppLayout";
 import HomePage from "./pages/HomePage";
 import TodayPage from "./pages/TodayPage/TodayPage";
+import JesusJournalPage from "./pages/TodayPage/JesusJournalPage";
+import FaithCheckPage from "./pages/TodayPage/FaithCheckPage";
 import ReadingPage from "./pages/ReadingPage/ReadingPage";
 import SearchPage from "./pages/SearchPage/SearchPage";
 import BookmarkPage from "./pages/BookmarkPage/BookmarkPage";
@@ -20,7 +22,10 @@ function App() {
       <AppLayout>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/today" element={<TodayPage />} />
+          <Route path="/today" element={<Navigate to="/today/word" replace />} />
+          <Route path="/today/word" element={<TodayPage />} />
+          <Route path="/today/journal" element={<JesusJournalPage />} />
+          <Route path="/today/check" element={<FaithCheckPage />} />
           <Route path="/read" element={<ReadingPage />} />
           <Route path="/read/:bookId" element={<ReadingPage />} />
           <Route path="/read/:bookId/:chapter" element={<ReadingPage />} />

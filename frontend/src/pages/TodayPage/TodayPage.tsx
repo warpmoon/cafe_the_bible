@@ -12,6 +12,7 @@ import {
   CheckCircle2
 } from 'lucide-react';
 import { toJpeg } from 'html-to-image';
+import TodaySubNav from './TodaySubNav';
 import styles from './TodayPage.module.css';
 
 // Import background images
@@ -27,7 +28,8 @@ const TodayPage: React.FC = () => {
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
-  const todayKey = new Date().toISOString().slice(0, 10);
+  const today = new Date();
+  const todayKey = `${today.getFullYear()}-${`${today.getMonth() + 1}`.padStart(2, '0')}-${`${today.getDate()}`.padStart(2, '0')}`;
   const savedDevotion = devotions[todayKey];
   const reflection = draft.reflection ?? savedDevotion?.reflection ?? '';
   const prayer = draft.prayer ?? savedDevotion?.prayer ?? '';
@@ -138,6 +140,7 @@ const TodayPage: React.FC = () => {
         <span className={styles.date}>{todayStr}</span>
         <h1 className={styles.title}>오늘의 말씀</h1>
       </header>
+      <TodaySubNav />
 
       {verse && (
         <>
