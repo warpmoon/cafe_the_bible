@@ -1,4 +1,4 @@
-# GEMINI.md
+# CLAUDE.md
 
 이 프로젝트의 모든 규칙은 [`AGENTS.md`](./AGENTS.md)를 단일 진입점으로 합니다.
 
