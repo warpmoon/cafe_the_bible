@@ -19,6 +19,16 @@
   color: var(--color-accent);
 }
 
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.popoverAnchor {
+  position: relative;
+}
+
 .bookmark {
   color: var(--color-text-muted);
   transition: all 0.2s;
@@ -29,11 +39,27 @@
   color: var(--color-accent);
 }
 
+.highlight {
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+  padding: 2px;
+}
+
+.highlight:hover {
+  color: var(--color-text);
+}
+
+.highlightActive {
+  composes: highlight;
+  color: #e6a800;
+}
+
 .text {
   font-size: var(--size-body);
   line-height: 1.8;
   color: var(--color-text);
   word-break: keep-all;
+  transition: background-color 0.2s;
 }
 
 @media (prefers-color-scheme: dark) {

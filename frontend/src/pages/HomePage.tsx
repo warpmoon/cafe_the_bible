@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { BookOpen, CalendarDays, ChevronRight, NotebookPen } from 'lucide-react';
 import { useBooks, useRandomVerse } from '../hooks/useBible';
 import { useReadingStore } from '../store/readingStore';
+import ReadingProgress from '../components/Common/ReadingProgress';
 import styles from './HomePage.module.css';
 
 const HomePage: React.FC = () => {
@@ -65,6 +66,8 @@ const HomePage: React.FC = () => {
           </Link>
         </div>
       </section>
+
+      <ReadingProgress />
 
       <section>
         <h2 className={styles.title}>구약 성경</h2>

@@ -1,0 +1,252 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.header h1 {
+  font-size: var(--size-h1);
+  margin-bottom: var(--space-xs);
+}
+
+.header p {
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+}
+
+.deleteBtn {
+  color: var(--color-text-muted);
+  padding: var(--space-sm);
+  border-radius: var(--radius-md);
+  transition: all 0.2s;
+}
+
+.deleteBtn:hover {
+  color: var(--color-error);
+  background: rgba(231, 76, 60, 0.1);
+}
+
+/* Template selection */
+.templateGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--space-lg);
+}
+
+.templateCard {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.templateCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
+}
+
+.templateIcon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-accent);
+}
+
+.templateCard h2 {
+  font-size: var(--size-h3);
+}
+
+.templateCard p {
+  color: var(--color-text-muted);
+  font-size: var(--size-small);
+  line-height: 1.5;
+  flex: 1;
+}
+
+.startBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  padding: 0.7rem var(--space-lg);
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  transition: background 0.2s;
+}
+
+.startBtn:hover {
+  background: var(--color-accent-hover);
+}
+
+/* Progress */
+.progressSection {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-md);
+}
+
+.progressStats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.stat strong {
+  font-size: var(--size-h2);
+  color: var(--color-text);
+}
+
+.stat span {
+  font-size: var(--size-small);
+  color: var(--color-text-muted);
+  margin-left: var(--space-xs);
+}
+
+.streakBadge {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: 0.3rem 0.7rem;
+  background: rgba(230, 126, 34, 0.12);
+  color: #e67e22;
+  border-radius: 20px;
+  font-size: var(--size-small);
+  font-weight: 600;
+}
+
+.progressPercent {
+  font-size: var(--size-h2);
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.progressBar {
+  height: 8px;
+  background: var(--color-bg);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+/* Day list */
+.dayList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.dayItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md);
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s;
+}
+
+.dayItem:hover {
+  border-color: var(--color-accent);
+  transform: translateX(4px);
+}
+
+.dayCompleted {
+  opacity: 0.7;
+}
+
+.dayCompleted .dayInfo strong {
+  text-decoration: line-through;
+}
+
+.dayCurrent {
+  border-color: var(--color-accent);
+  background: var(--color-bg);
+}
+
+.dayStatus {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.checkIcon {
+  color: var(--color-success);
+}
+
+.dayInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.dayInfo strong {
+  font-size: var(--size-body);
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.dayInfo span {
+  font-size: var(--size-small);
+  color: var(--color-text-muted);
+}
+
+.todayBadge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.15rem 0.5rem;
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+  border-radius: 10px;
+}
+
+.chevron {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .templateGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .progressStats {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-sm);
+  }
+}

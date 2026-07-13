@@ -10,7 +10,7 @@ import styles from './BookmarkPage.module.css';
 import { Verse } from '../../types/bible';
 
 const BookmarkPage: React.FC = () => {
-  const { bookmarks, toggleBookmark } = useReadingStore();
+  const { bookmarks, toggleBookmark, highlights, toggleHighlight, removeHighlight } = useReadingStore();
   const navigate = useNavigate();
 
   // Fetch bookmarked verses
@@ -46,7 +46,10 @@ const BookmarkPage: React.FC = () => {
               <VerseItem 
                 verse={verse} 
                 isBookmarked={true} 
-                onToggleBookmark={toggleBookmark} 
+                onToggleBookmark={toggleBookmark}
+                highlightColor={highlights[verse.id]}
+                onToggleHighlight={toggleHighlight}
+                onRemoveHighlight={removeHighlight}
               />
               <div className={styles.reference}>
                 {verse.book_name} {verse.chapter_number}:{verse.number}

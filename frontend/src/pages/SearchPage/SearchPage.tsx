@@ -3,6 +3,7 @@ import { useSearch } from '../../hooks/useBible';
 import SearchBar from '../../components/Common/SearchBar';
 import LoadingSpinner from '../../components/Common/LoadingSpinner';
 import { useNavigate } from 'react-router-dom';
+import { highlightText } from '../../utils/highlightText';
 import styles from './SearchPage.module.css';
 import { Verse } from '../../types/bible';
 
@@ -51,7 +52,7 @@ const SearchPage: React.FC = () => {
             <div className={styles.resultHeader}>
               <span className={styles.reference}>{verse.book_name} {verse.chapter_number}:{verse.number}</span>
             </div>
-            <p className={styles.text}>{verse.text}</p>
+            <p className={styles.text}>{highlightText(verse.text, query)}</p>
           </div>
         ))}
         {query && data?.results.length === 0 && !isLoading && (

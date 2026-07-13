@@ -5,8 +5,6 @@ import {
   Search,
   Bookmark,
   Calendar,
-  Sun,
-  Moon,
   Home,
   LibraryBig,
   MapPinned,
@@ -15,12 +13,12 @@ import {
   CalendarCheck,
   ClipboardCheck,
   NotebookPen,
+  ListChecks,
 } from "lucide-react";
-import { useReadingStore } from "../../store/readingStore";
+import ThemeSelector from "./ThemeSelector";
 import styles from "./Sidebar.module.css";
 
 const Sidebar: React.FC = () => {
-  const { theme, toggleTheme } = useReadingStore();
   const location = useLocation();
   const isReferenceActive = location.pathname.startsWith("/reference") || location.pathname === "/map";
   const isTodayActive = location.pathname.startsWith("/today");
@@ -65,6 +63,15 @@ const Sidebar: React.FC = () => {
         >
           <Bookmark size={20} />
           <span>북마크</span>
+        </NavLink>
+        <NavLink
+          to="/plan"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.link
+          }
+        >
+          <ListChecks size={20} />
+          <span>읽기 계획</span>
         </NavLink>
         <div className={styles.navGroup}>
           <NavLink
@@ -145,19 +152,7 @@ const Sidebar: React.FC = () => {
       </nav>
       
       <div className={styles.footer}>
-        <button className={styles.themeToggle} onClick={toggleTheme}>
-          {theme === 'light' ? (
-            <>
-              <Moon size={20} />
-              <span>다크 모드</span>
-            </>
-          ) : (
-            <>
-              <Sun size={20} />
-              <span>라이트 모드</span>
-            </>
-          )}
-        </button>
+        <ThemeSelector />
       </div>
     </aside>
   );

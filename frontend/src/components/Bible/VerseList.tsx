@@ -9,7 +9,7 @@ interface VerseListProps {
 }
 
 const VerseList: React.FC<VerseListProps> = ({ verses }) => {
-  const { bookmarks, toggleBookmark } = useReadingStore();
+  const { bookmarks, toggleBookmark, highlights, toggleHighlight, removeHighlight } = useReadingStore();
 
   return (
     <div className={styles.container}>
@@ -19,6 +19,9 @@ const VerseList: React.FC<VerseListProps> = ({ verses }) => {
           verse={verse}
           isBookmarked={bookmarks.includes(verse.id)}
           onToggleBookmark={toggleBookmark}
+          highlightColor={highlights[verse.id]}
+          onToggleHighlight={toggleHighlight}
+          onRemoveHighlight={removeHighlight}
         />
       ))}
     </div>

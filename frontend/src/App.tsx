@@ -15,6 +15,7 @@ import BookmarkPage from "./pages/BookmarkPage/BookmarkPage";
 import MapPage from "./pages/MapPage/MapPage";
 import ReferencePeoplePage from "./pages/ReferencePeoplePage/ReferencePeoplePage";
 import ReferenceFestivalsPage from "./pages/ReferenceFestivalsPage/ReferenceFestivalsPage";
+import ReadingPlanPage from "./pages/ReadingPlanPage/ReadingPlanPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/reference/map" element={<MapPage />} />
           <Route path="/reference/people" element={<ReferencePeoplePage />} />
           <Route path="/reference/festivals" element={<ReferenceFestivalsPage />} />
+          <Route path="/plan" element={<ReadingPlanPage />} />
         </Routes>
       </AppLayout>
     </Router>

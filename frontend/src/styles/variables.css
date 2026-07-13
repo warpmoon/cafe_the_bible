@@ -59,6 +59,9 @@
 
   /* Additional UI */
   --color-surface: #ffffff;
+
+  /* Highlight */
+  --color-highlight-mark: #fff3a3;
 }
 
 [data-theme='dark'] {
@@ -76,6 +79,9 @@
   --color-on-primary: #2c3e50;
   --color-on-accent: #ffffff;
 
+  /* Highlight Dark */
+  --color-highlight-mark: #5c5200;
+
   /* Sidebar Dark */
   --sidebar-bg: #121212;
   --sidebar-text: #f8f9fa;
@@ -84,4 +90,35 @@
   --sidebar-border: #3d3d3d;
   --sidebar-active-bg: var(--color-accent);
   --sidebar-active-text: #f8f9fa;
+}
+
+[data-theme='sepia'] {
+  --color-primary: #5b4636;
+  --color-primary-light: #7a6352;
+  --color-accent: #8b6914;
+  --color-accent-hover: #725610;
+  --color-bg: #f4ecd8;
+  --color-card: #faf6eb;
+  --color-surface: #faf6eb;
+  --color-text: #433422;
+  --color-text-muted: #8a7b6b;
+  --color-border: #e0d5c1;
+  --color-success: #5a7a3a;
+  --color-error: #a04030;
+
+  /* On-Colors Sepia */
+  --color-on-primary: #faf6eb;
+  --color-on-accent: #faf6eb;
+
+  /* Highlight Sepia */
+  --color-highlight-mark: #e8d88c;
+
+  /* Sidebar Sepia */
+  --sidebar-bg: #3e2f20;
+  --sidebar-text: #f4ecd8;
+  --sidebar-text-muted: rgba(244, 236, 216, 0.7);
+  --sidebar-hover: rgba(244, 236, 216, 0.1);
+  --sidebar-border: rgba(244, 236, 216, 0.15);
+  --sidebar-active-bg: var(--color-accent);
+  --sidebar-active-text: #f4ecd8;
 }
