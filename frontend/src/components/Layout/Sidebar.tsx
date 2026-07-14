@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import {
   BookOpen,
@@ -14,6 +14,8 @@ import {
   ClipboardCheck,
   NotebookPen,
   ListChecks,
+  ChevronDown,
+  ChevronUp,
 } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import styles from "./Sidebar.module.css";
@@ -22,6 +24,9 @@ const Sidebar: React.FC = () => {
   const location = useLocation();
   const isReferenceActive = location.pathname.startsWith("/reference") || location.pathname === "/map";
   const isTodayActive = location.pathname.startsWith("/today");
+
+  const [isReferenceOpen, setIsReferenceOpen] = useState(false);
+  const [isTodayOpen, setIsTodayOpen] = useState(false);
 
   return (
     <aside className={styles.sidebar}>
@@ -74,85 +79,97 @@ const Sidebar: React.FC = () => {
           <span>읽기 계획</span>
         </NavLink>
         <div className={styles.navGroup}>
-          <NavLink
-            to="/reference/map"
-            className={isReferenceActive ? styles.activeLink : styles.link}
+          <button
+            type="button"
+            className={`${isReferenceActive ? styles.activeLink : styles.link} ${styles.groupHeader}`}
+            onClick={() => setIsReferenceOpen(!isReferenceOpen)}
           >
-            <LibraryBig size={20} />
-            <span>참고자료</span>
-          </NavLink>
-          <div className={styles.subNav}>
-            <NavLink
-              to="/reference/map"
-              className={({ isActive }) =>
-                isActive ? styles.activeSubLink : styles.subLink
-              }
-            >
-              <MapPinned size={16} />
-              <span>지도맵</span>
-            </NavLink>
-            <NavLink
-              to="/reference/people"
-              className={({ isActive }) =>
-                isActive ? styles.activeSubLink : styles.subLink
-              }
-            >
-              <UsersRound size={16} />
-              <span>인물 정보</span>
-            </NavLink>
-            <NavLink
-              to="/reference/festivals"
-              className={({ isActive }) =>
-                isActive ? styles.activeSubLink : styles.subLink
-              }
-            >
-              <CalendarDays size={16} />
-              <span>절기 정보</span>
-            </NavLink>
-          </div>
+            <div className={styles.groupTitle}>
+              <LibraryBig size={20} />
+              <span>참고자료</span>
+            </div>
+            {isReferenceOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
+          {isReferenceOpen && (
+            <div className={styles.subNav}>
+              <NavLink
+                to="/reference/map"
+                className={({ isActive }) =>
+                  isActive ? styles.activeSubLink : styles.subLink
+                }
+              >
+                <MapPinned size={16} />
+                <span>지도맵</span>
+              </NavLink>
+              <NavLink
+                to="/reference/people"
+                className={({ isActive }) =>
+                  isActive ? styles.activeSubLink : styles.subLink
+                }
+              >
+                <UsersRound size={16} />
+                <span>인물 정보</span>
+              </NavLink>
+              <NavLink
+                to="/reference/festivals"
+                className={({ isActive }) =>
+                  isActive ? styles.activeSubLink : styles.subLink
+                }
+              >
+                <CalendarDays size={16} />
+                <span>절기 정보</span>
+              </NavLink>
+            </div>
+          )}
         </div>
         <div className={styles.navGroup}>
-          <NavLink
-            to="/today/word"
-            className={isTodayActive ? styles.activeLink : styles.link}
+          <button
+            type="button"
+            className={`${isTodayActive ? styles.activeLink : styles.link} ${styles.groupHeader}`}
+            onClick={() => setIsTodayOpen(!isTodayOpen)}
           >
-            <Calendar size={20} />
-            <span>오늘의 말씀</span>
-          </NavLink>
-          <div className={styles.subNav}>
-            <NavLink
-              to="/today/word"
-              className={({ isActive }) =>
-                isActive ? styles.activeSubLink : styles.subLink
-              }
-            >
-              <CalendarCheck size={16} />
+            <div className={styles.groupTitle}>
+              <Calendar size={20} />
               <span>오늘의 말씀</span>
-            </NavLink>
-            <NavLink
-              to="/today/journal"
-              className={({ isActive }) =>
-                isActive ? styles.activeSubLink : styles.subLink
-              }
-            >
-              <NotebookPen size={16} />
-              <span>예수 동행일기</span>
-            </NavLink>
-            <NavLink
-              to="/today/check"
-              className={({ isActive }) =>
-                isActive ? styles.activeSubLink : styles.subLink
-              }
-            >
-              <ClipboardCheck size={16} />
-              <span>오늘의 신앙 체크</span>
-            </NavLink>
-          </div>
+            </div>
+            {isTodayOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+          </button>
+          {isTodayOpen && (
+            <div className={styles.subNav}>
+              <NavLink
+                to="/today/word"
+                className={({ isActive }) =>
+                  isActive ? styles.activeSubLink : styles.subLink
+                }
+              >
+                <CalendarCheck size={16} />
+                <span>오늘의 말씀</span>
+              </NavLink>
+              <NavLink
+                to="/today/journal"
+                className={({ isActive }) =>
+                  isActive ? styles.activeSubLink : styles.subLink
+                }
+              >
+                <NotebookPen size={16} />
+                <span>예수 동행일기</span>
+              </NavLink>
+              <NavLink
+                to="/today/check"
+                className={({ isActive }) =>
+                  isActive ? styles.activeSubLink : styles.subLink
+                }
+              >
+                <ClipboardCheck size={16} />
+                <span>오늘의 신앙 체크</span>
+              </NavLink>
+            </div>
+          )}
         </div>
       </nav>
       
       <div className={styles.footer}>
-        <ThemeSelector />
+        <ThemeSelector variant="sidebar" />
       </div>
     </aside>
   );

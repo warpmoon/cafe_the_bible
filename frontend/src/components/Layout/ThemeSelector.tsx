@@ -9,15 +9,24 @@ const themes: { value: Theme; icon: React.ReactNode; label: string }[] = [
   { value: 'sepia', icon: <Coffee size={16} />, label: '세피아' },
 ];
 
-const ThemeSelector: React.FC = () => {
+interface ThemeSelectorProps {
+  variant?: 'sidebar' | 'popover';
+}
+
+const ThemeSelector: React.FC<ThemeSelectorProps> = ({ variant = 'popover' }) => {
   const { theme, setTheme } = useReadingStore();
+  const isSidebar = variant === 'sidebar';
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isSidebar ? styles.sidebarContainer : ''}`}>
       {themes.map((t) => (
         <button
           key={t.value}
-          className={theme === t.value ? styles.activeBtn : styles.btn}
+          className={
+            theme === t.value
+              ? `${styles.activeBtn} ${isSidebar ? styles.sidebarActiveBtn : ''}`
+              : `${styles.btn} ${isSidebar ? styles.sidebarBtn : ''}`
+          }
           onClick={() => setTheme(t.value)}
           title={t.label}
         >

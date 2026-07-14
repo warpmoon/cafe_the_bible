@@ -1,9 +1,15 @@
 .container {
   display: flex;
   gap: 0.25rem;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 0.25rem;
+}
+
+.sidebarContainer {
+  background: rgba(255, 255, 255, 0.05);
+  border: none;
 }
 
 .btn {
@@ -14,24 +20,34 @@
   gap: 0.4rem;
   padding: 0.5rem;
   border-radius: var(--radius-sm);
-  color: var(--sidebar-text-muted);
+  color: var(--color-text-muted);
   font-size: 0.8rem;
   transition: all 0.2s;
+  background: none;
+}
+
+.sidebarBtn {
+  color: var(--sidebar-text-muted);
 }
 
 .btn:hover {
-  background: var(--sidebar-hover);
-  color: var(--sidebar-text);
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.sidebarBtn:hover {
+  background: var(--sidebar-hover) !important;
+  color: var(--sidebar-text) !important;
 }
 
 .activeBtn {
   composes: btn;
-  background: var(--sidebar-active-bg);
-  color: var(--sidebar-active-text);
+  background: var(--color-primary);
+  color: var(--color-on-primary);
   font-weight: 600;
 }
 
-.activeBtn:hover {
-  background: var(--sidebar-active-bg);
-  color: var(--sidebar-active-text);
+.sidebarActiveBtn {
+  background: var(--sidebar-active-bg) !important;
+  color: var(--sidebar-active-text) !important;
 }

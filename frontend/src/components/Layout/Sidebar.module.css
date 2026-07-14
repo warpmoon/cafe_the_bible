@@ -11,6 +11,18 @@
   flex-direction: column;
   gap: 2rem;
   z-index: 1001;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sidebar-hover) transparent;
+}
+
+.sidebar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: var(--sidebar-hover);
+  border-radius: var(--radius-sm);
 }
 
 .logo {
@@ -19,6 +31,7 @@
   color: var(--color-accent);
   padding-left: 0.5rem;
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .nav {
@@ -119,4 +132,24 @@
   .sidebar {
     display: none;
   }
+}
+
+.groupHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.8rem 1rem;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.groupTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
 }
