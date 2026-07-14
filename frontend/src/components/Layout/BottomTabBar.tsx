@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { BookOpen, Search, Bookmark, Calendar, Home, LibraryBig } from 'lucide-react';
+import { BookOpen, Bookmark, Calendar, Home, LibraryBig, ListChecks } from 'lucide-react';
 import styles from './BottomTabBar.module.css';
 
 const BottomTabBar: React.FC = () => {
@@ -18,9 +18,9 @@ const BottomTabBar: React.FC = () => {
         <BookOpen size={24} />
         <span>읽기</span>
       </NavLink>
-      <NavLink to="/search" className={({ isActive }) => isActive ? styles.activeItem : styles.item}>
-        <Search size={24} />
-        <span>검색</span>
+      <NavLink to="/plan" className={({ isActive }) => isActive ? styles.activeItem : styles.item}>
+        <ListChecks size={24} />
+        <span>읽기 계획</span>
       </NavLink>
       <NavLink to="/bookmarks" className={({ isActive }) => isActive ? styles.activeItem : styles.item}>
         <Bookmark size={24} />

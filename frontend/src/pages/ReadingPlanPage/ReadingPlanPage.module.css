@@ -229,8 +229,8 @@
   font-size: 0.7rem;
   font-weight: 700;
   padding: 0.15rem 0.5rem;
-  background: var(--color-accent);
-  color: var(--color-on-accent);
+  background-color: var(--color-primary);
+  color: var(--color-on-primary);
   border-radius: 10px;
 }
 

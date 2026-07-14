@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { ListChecks, Settings } from 'lucide-react';
+import { Search, Settings } from 'lucide-react';
 import { useReadingStore, FontSize } from '../../store/readingStore';
 import ThemeSelector from './ThemeSelector';
 import styles from './MobileHeader.module.css';
@@ -26,8 +26,8 @@ const MobileHeader: React.FC = () => {
         Cafe the Bible
       </Link>
       <div className={styles.actions}>
-        <Link to="/plan" className={styles.actionBtn} title="읽기 계획" aria-label="읽기 계획 페이지 이동" onClick={() => setShowSettings(false)}>
-          <ListChecks size={22} />
+        <Link to="/search" className={styles.actionBtn} title="검색" aria-label="검색 페이지 이동" onClick={() => setShowSettings(false)}>
+          <Search size={22} />
         </Link>
         <div className={styles.settingsWrapper} ref={settingsRef}>
           <button

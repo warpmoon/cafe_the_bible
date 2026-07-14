@@ -16,10 +16,6 @@
   overflow-x: hidden;
 }
 
-.content.wideContent {
-  max-width: 1200px;
-}
-
 @media (max-width: 767px) {
   .main {
     padding-top: var(--header-height);
