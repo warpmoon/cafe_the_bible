@@ -110,7 +110,7 @@ const ReadingPlanPage: React.FC = () => {
       <section className={styles.dayList}>
         {activePlan.days.map((day) => (
           <button
-            key={day.day}
+            key={`${day.day}-${day.bookId}-${day.startChapter}`}
             className={`${styles.dayItem} ${day.completed ? styles.dayCompleted : ''} ${day.day === activePlan.currentDay && !day.completed ? styles.dayCurrent : ''}`}
             onClick={() =>
               handleDayClick(day.day, day.bookId, day.startChapter)
