@@ -22,7 +22,9 @@ import bgVertical from '../../assets/images/todaypage/card-coffee_h1.jpg';
 const TodayPage: React.FC = () => {
   const { data: verse, isLoading, refetch, isFetching } = useRandomVerse();
   const { devotions, saveDevotion } = useReadingStore();
-  const [layout, setLayout] = useState<'horizontal' | 'vertical'>('horizontal');
+  const [layout, setLayout] = useState<'horizontal' | 'vertical'>(() => {
+    return window.innerWidth < 768 ? 'vertical' : 'horizontal';
+  });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [draft, setDraft] = useState<Partial<Record<'reflection' | 'prayer' | 'action', string>>>({});
   const [savedAt, setSavedAt] = useState<number | null>(null);

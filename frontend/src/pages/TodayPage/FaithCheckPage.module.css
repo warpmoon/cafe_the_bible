@@ -158,54 +158,37 @@
   color: var(--color-on-primary);
 }
 
-.graph {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(2.5rem, 1fr));
-  gap: var(--space-sm);
-  min-height: 16rem;
-  padding-top: var(--space-md);
-}
-
-.barGroup {
-  min-width: 0;
-  display: grid;
-  grid-template-rows: 1fr auto auto;
-  gap: var(--space-xs);
-  align-items: end;
-  justify-items: center;
-}
-
-.barTrack {
+.graphContainer {
   width: 100%;
-  max-width: 2.2rem;
-  height: 11rem;
+  padding: var(--space-md) 0;
   display: flex;
-  align-items: flex-end;
-  border-radius: var(--radius-sm);
-  background: var(--color-bg);
-  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+  min-height: 220px;
 }
 
-.bar {
+.lineChart {
   width: 100%;
-  min-height: 0.2rem;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background: var(--color-accent);
-  transition: height 0.2s ease;
+  max-width: 600px;
+  height: auto;
+  overflow: visible;
 }
 
-.barGroup strong {
-  color: var(--color-text);
-  font-size: 0.8rem;
+.chartNode circle {
+  transition: r 0.15s ease, stroke-width 0.15s ease;
+  cursor: pointer;
 }
 
-.barGroup span {
-  max-width: 100%;
+.chartNode:hover circle {
+  r: 7;
+  stroke-width: 3.5;
+}
+
+.empty {
+  padding: 2rem;
   color: var(--color-text-muted);
-  font-size: 0.75rem;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+  text-align: center;
+  font-size: var(--size-small);
 }
 
 @media (max-width: 520px) {

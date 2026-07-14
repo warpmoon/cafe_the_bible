@@ -205,16 +205,104 @@ const FaithCheckPage: React.FC = () => {
           ))}
         </div>
 
-        <div className={styles.graph}>
-          {graphData.map((item) => (
-            <div key={item.label} className={styles.barGroup}>
-              <div className={styles.barTrack}>
-                <div className={styles.bar} style={{ height: `${item.score}%` }} />
-              </div>
-              <strong>{item.score}</strong>
-              <span>{item.label}</span>
-            </div>
-          ))}
+        <div className={styles.graphContainer}>
+          {graphData.length > 0 ? (
+            <svg viewBox="0 0 500 200" className={styles.lineChart}>
+              <defs>
+                <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stopColor="var(--color-accent)" stopOpacity="0.3" />
+                  <stop offset="100%" stopColor="var(--color-accent)" stopOpacity="0.0" />
+                </linearGradient>
+              </defs>
+              
+              {/* Grid Lines (Y-axis references at 0, 50, 100) */}
+              {[0, 50, 100].map((tick) => {
+                const y = 160 - (tick / 100) * 130;
+                return (
+                  <g key={tick}>
+                    <line
+                      x1="30"
+                      y1={y}
+                      x2="480"
+                      y2={y}
+                      stroke="var(--color-border)"
+                      strokeDasharray="4 4"
+                    />
+                    <text x="15" y={y + 4} textAnchor="middle" fontSize="10" fill="var(--color-text-muted)">
+                      {tick}
+                    </text>
+                  </g>
+                );
+              })}
+
+              {(() => {
+                const points = graphData.map((item, index) => {
+                  const x = 50 + (index / (graphData.length - 1 || 1)) * 410;
+                  const y = 160 - (item.score / 100) * 130;
+                  return { x, y, score: item.score, label: item.label };
+                });
+
+                const linePath = points.map((p, i) => `${i === 0 ? 'M' : 'L'} ${p.x} ${p.y}`).join(' ');
+                const areaPath = points.length > 0 
+                  ? `${linePath} L ${points[points.length - 1].x} 160 L ${points[0].x} 160 Z` 
+                  : '';
+
+                return (
+                  <>
+                    {/* Area fill */}
+                    {areaPath && <path d={areaPath} fill="url(#chartGrad)" />}
+                    
+                    {/* Line path */}
+                    {linePath && (
+                      <path
+                        d={linePath}
+                        fill="none"
+                        stroke="var(--color-accent)"
+                        strokeWidth="3"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    )}
+
+                    {/* Nodes (Circles and Scores) */}
+                    {points.map((p, i) => (
+                      <g key={i} className={styles.chartNode}>
+                        <circle
+                          cx={p.x}
+                          cy={p.y}
+                          r="5"
+                          fill="var(--color-card)"
+                          stroke="var(--color-accent)"
+                          strokeWidth="2.5"
+                        />
+                        <text
+                          x={p.x}
+                          y={p.y - 10}
+                          textAnchor="middle"
+                          fontSize="10"
+                          fontWeight="700"
+                          fill="var(--color-text)"
+                        >
+                          {p.score}
+                        </text>
+                        <text
+                          x={p.x}
+                          y="185"
+                          textAnchor="middle"
+                          fontSize="11"
+                          fill="var(--color-text-muted)"
+                        >
+                          {p.label}
+                        </text>
+                      </g>
+                    ))}
+                  </>
+                );
+              })()}
+            </svg>
+          ) : (
+            <p className={styles.empty}>기록이 없습니다.</p>
+          )}
         </div>
       </section>
     </div>

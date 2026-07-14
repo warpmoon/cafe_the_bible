@@ -73,7 +73,7 @@ const ReadingPage: React.FC = () => {
     if (!currentChapter || !chapters) return;
     const newChapter = direction === 'prev' ? currentChapter - 1 : currentChapter + 1;
     if (newChapter >= 1 && newChapter <= chapters.length) {
-      navigate(`/read/${bookId}/${newChapter}`);
+      navigate(`/read/${bookId}/${newChapter}/1`);
     }
   };
 
