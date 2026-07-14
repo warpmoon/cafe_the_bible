@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'corsheaders',
     # Local
     'bible', # 성경 데이터 처리 앱
+    'audio', # 음성 녹음 기능 앱
 ]
 
 MIDDLEWARE = [
@@ -105,3 +106,7 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.BrowsableAPIRenderer',
     ],
 }
+
+# Media files (uploads)
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Settings } from 'lucide-react';
+import { Search, Settings, Download } from 'lucide-react';
 import { useReadingStore, FontSize } from '../../store/readingStore';
 import ThemeSelector from './ThemeSelector';
 import styles from './MobileHeader.module.css';
@@ -58,6 +58,12 @@ const MobileHeader: React.FC = () => {
                     </button>
                   ))}
                 </div>
+              </div>
+              <div className={styles.downloadSection}>
+                <Link to="/downloads" className={styles.downloadLink} onClick={() => setShowSettings(false)}>
+                  <Download size={16} />
+                  <span>내 음성 다운로드</span>
+                </Link>
               </div>
             </div>
           )}

@@ -16,6 +16,7 @@ import {
   ListChecks,
   ChevronDown,
   ChevronUp,
+  Download,
 } from "lucide-react";
 import ThemeSelector from "./ThemeSelector";
 import styles from "./Sidebar.module.css";
@@ -77,6 +78,15 @@ const Sidebar: React.FC = () => {
         >
           <ListChecks size={20} />
           <span>읽기 계획</span>
+        </NavLink>
+        <NavLink
+          to="/downloads"
+          className={({ isActive }) =>
+            isActive ? styles.activeLink : styles.link
+          }
+        >
+          <Download size={20} />
+          <span>음성 다운로드</span>
         </NavLink>
         <div className={styles.navGroup}>
           <button

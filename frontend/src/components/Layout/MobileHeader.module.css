@@ -119,6 +119,32 @@
   border-color: var(--color-primary) !important;
 }
 
+.downloadSection {
+  border-top: 1px solid var(--color-border);
+  padding-top: var(--space-md);
+  margin-top: 2px;
+}
+
+.downloadLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  background-color: var(--color-bg-secondary);
+  color: var(--color-primary);
+  border: 1px solid var(--color-border);
+  padding: 0.6rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.downloadLink:hover {
+  background-color: var(--color-border);
+}
+
 @media (min-width: 768px) {
   .header {
     display: none;

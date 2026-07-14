@@ -13,6 +13,12 @@
   align-items: center;
 }
 
+.leftHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
 .number {
   font-size: var(--size-small);
   font-weight: 700;
@@ -65,5 +71,82 @@
 @media (prefers-color-scheme: dark) {
   .container {
     background-color: transparent;
+  }
+}
+
+.recordingIndicator {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: #e74c3c;
+  color: #ffffff;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+}
+
+.stopBtn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+}
+
+.audioControls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background-color: var(--color-bg);
+  padding: 0.15rem 0.35rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+}
+
+.playBtn, .deleteBtn, .recordBtn {
+  color: var(--color-text-muted);
+  transition: all 0.2s;
+  padding: 2px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playBtn:hover, .recordBtn:hover {
+  color: var(--color-primary);
+}
+
+.deleteBtn:hover {
+  color: #e74c3c;
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

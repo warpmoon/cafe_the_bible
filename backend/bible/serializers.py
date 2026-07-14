@@ -22,7 +22,26 @@ class VerseSerializer(serializers.ModelSerializer):
     book_name = serializers.ReadOnlyField(source='book.name')
     chapter_number = serializers.ReadOnlyField(source='chapter.number')
     book_id = serializers.ReadOnlyField(source='book.id')
+    voice_record = serializers.SerializerMethodField()
 
     class Meta:
         model = Verse
-        fields = ['id', 'book_id', 'book_name', 'chapter_number', 'number', 'text']
+        fields = ['id', 'book_id', 'book_name', 'chapter_number', 'number', 'text', 'voice_record']
+
+    def get_voice_record(self, obj):
+        from audio.models import VoiceRecord
+        record = obj.voice_records.first()
+        if record:
+            request = self.context.get('request')
+            if request:
+                return {
+                    'id': record.id,
+                    'audio_file': request.build_absolute_uri(record.audio_file.url),
+                    'created_at': record.created_at
+                }
+            return {
+                'id': record.id,
+                'audio_file': record.audio_file.url,
+                'created_at': record.created_at
+            }
+        return None

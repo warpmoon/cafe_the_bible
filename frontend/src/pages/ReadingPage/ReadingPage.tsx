@@ -7,7 +7,7 @@ import ChapterSelector from '../../components/Bible/ChapterSelector';
 import VerseSelector from '../../components/Bible/VerseSelector';
 import VerseList from '../../components/Bible/VerseList';
 import Skeleton from '../../components/Common/Skeleton';
-import { ChevronLeft, ChevronRight, Settings, AlertCircle, ArrowLeft } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Settings, AlertCircle, ArrowLeft, Headphones, Play, Pause } from 'lucide-react';
 import styles from './ReadingPage.module.css';
 
 const ReadingPageSkeleton: React.FC = () => (
@@ -38,6 +38,122 @@ const ReadingPage: React.FC = () => {
   const currentChapter = chapter ? parseInt(chapter) : null;
   const currentVerse = verse ? parseInt(verse) : null;
   const { data: verses, isLoading: versesLoading, error: versesError } = useVerses(selectedBookId || 0, currentChapter || 0);
+
+  const [playQueue, setPlayQueue] = useState<{ url: string; verseNumber: number; text: string }[]>([]);
+  const [currentQueueIndex, setCurrentQueueIndex] = useState<number>(-1);
+  const [isQueuePlaying, setIsQueuePlaying] = useState<boolean>(false);
+  const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);
+  const queueAudioRef = useRef<HTMLAudioElement | null>(null);
+
+  const startContinuousPlayback = () => {
+    if (!verses) return;
+    const queue = verses
+      .filter((v) => v.voice_record !== null)
+      .map((v) => ({
+        url: v.voice_record!.audio_file,
+        verseNumber: v.number,
+        text: v.text,
+      }));
+
+    if (queue.length === 0) {
+      alert('이 장에 녹음된 음성이 없습니다. 먼저 구절별로 음성을 녹음해 보세요!');
+      return;
+    }
+
+    setPlayQueue(queue);
+    setCurrentQueueIndex(0);
+    setIsQueuePlaying(true);
+    setIsAudioPlaying(true);
+  };
+
+  const stopContinuousPlayback = () => {
+    if (queueAudioRef.current) {
+      queueAudioRef.current.pause();
+      queueAudioRef.current = null;
+    }
+    setIsQueuePlaying(false);
+    setIsAudioPlaying(false);
+    setCurrentQueueIndex(-1);
+    setPlayQueue([]);
+  };
+
+  const toggleQueuePlay = () => {
+    if (!queueAudioRef.current) return;
+    if (queueAudioRef.current.paused) {
+      queueAudioRef.current.play().catch(console.error);
+      setIsAudioPlaying(true);
+    } else {
+      queueAudioRef.current.pause();
+      setIsAudioPlaying(false);
+    }
+  };
+
+  const handlePrevQueue = () => {
+    if (currentQueueIndex > 0) {
+      setCurrentQueueIndex((prev) => prev - 1);
+      setIsAudioPlaying(true);
+    }
+  };
+
+  const handleNextQueue = () => {
+    if (currentQueueIndex < playQueue.length - 1) {
+      setCurrentQueueIndex((prev) => prev + 1);
+      setIsAudioPlaying(true);
+    }
+  };
+
+  useEffect(() => {
+    if (!isQueuePlaying || currentQueueIndex < 0 || currentQueueIndex >= playQueue.length) {
+      return;
+    }
+
+    const currentItem = playQueue[currentQueueIndex];
+
+    if (queueAudioRef.current) {
+      queueAudioRef.current.pause();
+    }
+
+    const audio = new Audio(currentItem.url);
+    queueAudioRef.current = audio;
+
+    audio.onended = () => {
+      if (currentQueueIndex + 1 >= playQueue.length) {
+        stopContinuousPlayback();
+      } else {
+        setCurrentQueueIndex((prev) => prev + 1);
+      }
+    };
+
+    audio.onerror = () => {
+      if (currentQueueIndex + 1 >= playQueue.length) {
+        stopContinuousPlayback();
+      } else {
+        setCurrentQueueIndex((prev) => prev + 1);
+      }
+    };
+
+    audio.play()
+      .then(() => {
+        setIsAudioPlaying(true);
+      })
+      .catch((err) => {
+        console.error('연속 재생 플레이 실패:', err);
+        if (currentQueueIndex + 1 >= playQueue.length) {
+          stopContinuousPlayback();
+        } else {
+          setCurrentQueueIndex((prev) => prev + 1);
+        }
+      });
+
+  }, [currentQueueIndex, isQueuePlaying, playQueue]);
+
+  useEffect(() => {
+    return () => {
+      if (queueAudioRef.current) {
+        queueAudioRef.current.pause();
+      }
+    };
+  }, [bookId, chapter]);
 
   useEffect(() => {
     if (currentVerse && verses && containerRef.current) {
@@ -152,6 +268,9 @@ const ReadingPage: React.FC = () => {
               {verses[0]?.book_name} {currentChapter}장 {currentVerse ? `${currentVerse}절` : ''}
             </button>
             <div className={styles.headerActions}>
+              <button onClick={startContinuousPlayback} className={styles.audioBtn} title="이 장 낭독 연속 재생">
+                <Headphones size={20} />
+              </button>
               <button onClick={() => setShowSettings(!showSettings)} className={styles.settingsBtn}>
                 <Settings size={20} />
               </button>
@@ -183,6 +302,36 @@ const ReadingPage: React.FC = () => {
               다음 장 <ChevronRight />
             </button>
           </footer>
+
+          {/* 연속 재생 플레이어 바 */}
+          {playQueue.length > 0 && currentQueueIndex >= 0 && currentQueueIndex < playQueue.length && (
+            <div className={styles.playerBar}>
+              <div className={styles.playerInfo}>
+                <span className={styles.playerTitle}>
+                  {verses?.[0]?.book_name} {currentChapter}장 {playQueue[currentQueueIndex].verseNumber}절 낭독 중
+                </span>
+                <p className={styles.playerText}>{playQueue[currentQueueIndex].text}</p>
+              </div>
+              <div className={styles.playerControls}>
+                <button onClick={handlePrevQueue} disabled={currentQueueIndex === 0} className={styles.playerBtn}>
+                  <ChevronLeft size={20} />
+                </button>
+                <button onClick={toggleQueuePlay} className={styles.playerPlayBtn}>
+                  {isQueuePlaying && isAudioPlaying ? (
+                    <Pause size={20} fill="currentColor" />
+                  ) : (
+                    <Play size={20} fill="currentColor" />
+                  )}
+                </button>
+                <button onClick={handleNextQueue} disabled={currentQueueIndex === playQueue.length - 1} className={styles.playerBtn}>
+                  <ChevronRight size={20} />
+                </button>
+                <button onClick={stopContinuousPlayback} className={styles.playerCloseBtn}>
+                  닫기
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

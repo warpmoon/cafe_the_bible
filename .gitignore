@@ -61,6 +61,8 @@ db.sqlite3-journal
 media/
 staticfiles/
 Thumbs.db
+*.sql
+*.sqlite3
 
 # Flask stuff:
 instance/
@@ -220,3 +222,4 @@ temp/
 dist/
 dist-ssr/
 *.localdeploy.sh
+backend/db.sqlite3

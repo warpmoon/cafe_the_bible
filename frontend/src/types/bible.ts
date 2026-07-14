@@ -17,6 +17,17 @@ export interface Chapter {
   number: number;
 }
 
+export interface VoiceRecord {
+  id: number;
+  verse: number;
+  book_id: number;
+  book_name: string;
+  chapter_number: number;
+  verse_number: number;
+  audio_file: string;
+  created_at: string;
+}
+
 export interface Verse {
   id: number;
   book_id: number;
@@ -24,6 +35,11 @@ export interface Verse {
   chapter_number: number;
   number: number;
   text: string;
+  voice_record: {
+    id: number;
+    audio_file: string;
+    created_at: string;
+  } | null;
 }
 
 export interface PaginatedResponse<T> {
