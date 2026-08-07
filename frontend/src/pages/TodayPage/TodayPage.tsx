@@ -26,7 +26,7 @@ const TodayPage: React.FC = () => {
     return window.innerWidth < 768 ? 'vertical' : 'horizontal';
   });
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [draft, setDraft] = useState<Partial<Record<'reflection' | 'prayer' | 'action', string>>>({});
+  const [draft, setDraft] = useState<Partial<Record<'reflection' | 'prayer' | 'action' | 'journal', string>>>({});
   const [savedAt, setSavedAt] = useState<number | null>(null);
   const cardRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -36,6 +36,7 @@ const TodayPage: React.FC = () => {
   const reflection = draft.reflection ?? savedDevotion?.reflection ?? '';
   const prayer = draft.prayer ?? savedDevotion?.prayer ?? '';
   const action = draft.action ?? savedDevotion?.action ?? '';
+  const journal = draft.journal ?? savedDevotion?.journal ?? '';
 
   // Close menu when clicking outside
   useEffect(() => {
@@ -116,13 +117,14 @@ const TodayPage: React.FC = () => {
       reflection,
       prayer,
       action,
+      journal,
       updatedAt,
     });
     setDraft({});
     setSavedAt(updatedAt);
   };
 
-  const updateDraft = (field: 'reflection' | 'prayer' | 'action', value: string) => {
+  const updateDraft = (field: 'reflection' | 'prayer' | 'action' | 'journal', value: string) => {
     setDraft((current) => ({ ...current, [field]: value }));
     setSavedAt(null);
   };
@@ -250,6 +252,16 @@ const TodayPage: React.FC = () => {
                 />
               </label>
             </div>
+
+            <label className={styles.field}>
+              <span>동행 일기 (개인 메모)</span>
+              <textarea
+                value={journal}
+                onChange={(event) => updateDraft('journal', event.target.value)}
+                placeholder="오늘 하루 주님과 동행하며 느낀 생각, 감사, 혹은 개인의 소소한 일기를 자유롭게 기록해 보세요."
+                rows={4}
+              />
+            </label>
 
             <button className={styles.saveBtn} onClick={handleSaveDevotion}>
               묵상 저장

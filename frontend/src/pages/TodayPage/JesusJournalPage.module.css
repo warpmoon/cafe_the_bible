@@ -89,10 +89,24 @@
   border-radius: var(--radius-sm);
   background: var(--color-bg);
   overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dayCell:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-sm);
 }
 
 .mutedDay {
   opacity: 0.45;
+}
+
+.selectedDay {
+  border-color: var(--color-accent) !important;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+  background: var(--color-card) !important;
 }
 
 .dayNumber {
@@ -221,5 +235,138 @@
 
   .entryHeader {
     flex-direction: column;
+  }
+}
+
+/* Journal Form Panel Styles */
+.journalFormPanel {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.formHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-sm);
+}
+
+.eyebrow {
+  display: block;
+  font-size: var(--size-small);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.2rem;
+}
+
+.formHeader h2 {
+  margin: 0;
+  font-size: var(--size-h3);
+  color: var(--color-text);
+}
+
+.savedBadge {
+  background: rgba(39, 174, 96, 0.1);
+  color: var(--color-success);
+  font-size: var(--size-small);
+  font-weight: 700;
+  padding: 0.35rem 0.75rem;
+  border-radius: 50px;
+  animation: fadeIn 0.3s ease;
+}
+
+.formBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.formGroup span {
+  font-size: var(--size-small);
+  font-weight: 700;
+  color: var(--color-text-muted);
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 0.75rem var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: inherit;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.15);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-md);
+}
+
+.formFooter {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--space-md);
+}
+
+.saveBtn {
+  padding: 0.75rem var(--space-xl);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  background: var(--color-accent);
+  border: none;
+  color: var(--color-on-accent);
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.saveBtn:hover {
+  background: var(--color-accent-hover);
+}
+
+.saveBtn:active {
+  transform: scale(0.98);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (max-width: 640px) {
+  .formGrid {
+    grid-template-columns: 1fr;
+    gap: var(--space-sm);
+  }
+
+  .journalFormPanel {
+    padding: var(--space-md);
   }
 }

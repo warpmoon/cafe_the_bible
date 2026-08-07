@@ -96,8 +96,38 @@ const getCalendarDays = (monthDate: Date) => {
 };
 
 const JesusJournalPage: React.FC = () => {
-  const { devotions, devotionLabelColors, setDevotionLabelColor } = useReadingStore();
+  const { devotions, devotionLabelColors, setDevotionLabelColor, saveDevotion } = useReadingStore();
   const [visibleMonth, setVisibleMonth] = useState(() => new Date());
+  
+  const today = new Date();
+  const todayKey = formatDateKey(today);
+  const [selectedDate, setSelectedDate] = useState<string>(todayKey);
+  const [draftDevotion, setDraftDevotion] = useState(() => {
+    const existing = devotions[todayKey];
+    return {
+      reference: existing?.reference ?? '',
+      verseText: existing?.verseText ?? '',
+      reflection: existing?.reflection ?? '',
+      prayer: existing?.prayer ?? '',
+      action: existing?.action ?? '',
+      journal: existing?.journal ?? '',
+    };
+  });
+  const [savedState, setSavedState] = useState<boolean>(false);
+
+  const handleSelectDate = (dateKey: string) => {
+    setSelectedDate(dateKey);
+    const existing = devotions[dateKey];
+    setDraftDevotion({
+      reference: existing?.reference ?? '',
+      verseText: existing?.verseText ?? '',
+      reflection: existing?.reflection ?? '',
+      prayer: existing?.prayer ?? '',
+      action: existing?.action ?? '',
+      journal: existing?.journal ?? '',
+    });
+    setSavedState(false);
+  };
 
   const calendarDays = useMemo(() => getCalendarDays(visibleMonth), [visibleMonth]);
   const monthEntries = useMemo(
@@ -116,6 +146,22 @@ const JesusJournalPage: React.FC = () => {
 
   const moveMonth = (offset: number) => {
     setVisibleMonth((current) => new Date(current.getFullYear(), current.getMonth() + offset, 1));
+  };
+
+  const handleSave = () => {
+    saveDevotion({
+      date: selectedDate,
+      verseId: devotions[selectedDate]?.verseId ?? 0,
+      reference: draftDevotion.reference || '묵상 기록',
+      verseText: draftDevotion.verseText,
+      reflection: draftDevotion.reflection,
+      prayer: draftDevotion.prayer,
+      action: draftDevotion.action,
+      journal: draftDevotion.journal,
+      updatedAt: Date.now(),
+    });
+    setSavedState(true);
+    setTimeout(() => setSavedState(false), 2000);
   };
 
   const renderEntrySummary = (entry: DevotionEntry) => {
@@ -153,6 +199,12 @@ const JesusJournalPage: React.FC = () => {
             <dt>실천</dt>
             <dd>{entry.action || '기록된 실천이 없습니다.'}</dd>
           </div>
+          {entry.journal && (
+            <div>
+              <dt>동행 일기</dt>
+              <dd>{entry.journal}</dd>
+            </div>
+          )}
         </dl>
       </article>
     );
@@ -193,7 +245,8 @@ const JesusJournalPage: React.FC = () => {
             return (
               <div
                 key={dateKey}
-                className={`${styles.dayCell} ${!inMonth ? styles.mutedDay : ''}`}
+                className={`${styles.dayCell} ${!inMonth ? styles.mutedDay : ''} ${selectedDate === dateKey ? styles.selectedDay : ''}`}
+                onClick={() => handleSelectDate(dateKey)}
               >
                 <span className={styles.dayNumber}>{date.getDate()}</span>
                 {entry && (
@@ -208,6 +261,89 @@ const JesusJournalPage: React.FC = () => {
               </div>
             );
           })}
+        </div>
+      </section>
+
+      {/* 캘린더 하단에 노출되는 인라인 일기 작성 폼 */}
+      <section className={styles.journalFormPanel} aria-labelledby="journal-form-title">
+        <div className={styles.formHeader}>
+          <div>
+            <span className={styles.eyebrow}>Write journal</span>
+            <h2 id="journal-form-title">{formatDayLabel(selectedDate)} 일기 작성</h2>
+          </div>
+          {savedState && (
+            <span className={styles.savedBadge}>저장 완료</span>
+          )}
+        </div>
+        
+        <div className={styles.formBody}>
+          <div className={styles.formGrid}>
+            <label className={styles.formGroup}>
+              <span>말씀 구절</span>
+              <input
+                type="text"
+                value={draftDevotion.reference}
+                onChange={(e) => setDraftDevotion(prev => ({ ...prev, reference: e.target.value }))}
+                placeholder="예: 마태복음 6:33"
+              />
+            </label>
+            <label className={styles.formGroup}>
+              <span>말씀 본문</span>
+              <input
+                type="text"
+                value={draftDevotion.verseText}
+                onChange={(e) => setDraftDevotion(prev => ({ ...prev, verseText: e.target.value }))}
+                placeholder="오늘 마음에 닿은 말씀 본문을 적어보세요."
+              />
+            </label>
+          </div>
+
+          <label className={styles.formGroup}>
+            <span>말씀이 오늘 내게 주는 의미 (묵상)</span>
+            <textarea
+              value={draftDevotion.reflection}
+              onChange={(e) => setDraftDevotion(prev => ({ ...prev, reflection: e.target.value }))}
+              placeholder="말씀을 읽고 묵상한 내용을 기록해 보세요."
+              rows={3}
+            />
+          </label>
+
+          <div className={styles.formGrid}>
+            <label className={styles.formGroup}>
+              <span>기도 제목</span>
+              <textarea
+                value={draftDevotion.prayer}
+                onChange={(e) => setDraftDevotion(prev => ({ ...prev, prayer: e.target.value }))}
+                placeholder="오늘의 기도를 적어보세요."
+                rows={3}
+              />
+            </label>
+            <label className={styles.formGroup}>
+              <span>오늘의 실천</span>
+              <textarea
+                value={draftDevotion.action}
+                onChange={(e) => setDraftDevotion(prev => ({ ...prev, action: e.target.value }))}
+                placeholder="오늘 하루 실천해 볼 내용을 적어보세요."
+                rows={3}
+              />
+            </label>
+          </div>
+
+          <label className={styles.formGroup}>
+            <span>동행 일기 (개인 메모)</span>
+            <textarea
+              value={draftDevotion.journal}
+              onChange={(e) => setDraftDevotion(prev => ({ ...prev, journal: e.target.value }))}
+              placeholder="오늘 하루 주님과 동행하며 느낀 생각, 감사, 혹은 개인의 소소한 일기를 자유롭게 기록해 보세요."
+              rows={4}
+            />
+          </label>
+        </div>
+
+        <div className={styles.formFooter}>
+          <button type="button" className={styles.saveBtn} onClick={handleSave}>
+            일기 저장
+          </button>
         </div>
       </section>
 

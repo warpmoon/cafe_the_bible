@@ -12,6 +12,7 @@ export interface DevotionEntry {
   reflection: string;
   prayer: string;
   action: string;
+  journal?: string;
   updatedAt: number;
 }
 
