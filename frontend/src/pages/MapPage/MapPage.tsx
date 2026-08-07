@@ -61,7 +61,9 @@ const MapPage: React.FC = () => {
         normalizedQuery.length === 0 ||
         normalize(place.biblicalName).includes(normalizedQuery) ||
         normalize(place.modernName).includes(normalizedQuery) ||
-        normalize(place.region).includes(normalizedQuery);
+        normalize(place.region).includes(normalizedQuery) ||
+        (place.relatedPersons &&
+          place.relatedPersons.some((person) => normalize(person).includes(normalizedQuery)));
 
       return matchesCategory && matchesQuery;
     });
@@ -92,7 +94,7 @@ const MapPage: React.FC = () => {
         <input
           className={styles.searchInput}
           type="search"
-          placeholder="성경 지명, 오늘날 지명, 지역 검색"
+          placeholder="성경 지명, 오늘날 지명, 관련 인물, 지역 검색"
           value={query}
           onChange={(event) => setQuery(event.target.value)}
         />
@@ -177,6 +179,12 @@ const MapPage: React.FC = () => {
               <dt>지역</dt>
               <dd>{selectedPlace.region}</dd>
             </div>
+            {selectedPlace.relatedPersons && selectedPlace.relatedPersons.length > 0 && (
+              <div>
+                <dt>관련 인물</dt>
+                <dd>{selectedPlace.relatedPersons.join(", ")}</dd>
+              </div>
+            )}
             <div>
               <dt>관련 구절</dt>
               <dd>{selectedPlace.bibleRefs.join(", ")}</dd>
