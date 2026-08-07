@@ -46,6 +46,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["삼하 5:6-10", "시 122:1-9", "마 21:1-11"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["다윗", "솔로몬", "예수님", "히스기야", "이사야"],
   },
   {
     id: "bethlehem",
@@ -57,6 +58,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["룻 1:1", "미 5:2", "마 2:1"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["다윗", "예수님", "보아스", "룻"],
   },
   {
     id: "nazareth",
@@ -68,6 +70,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 2:23", "눅 1:26-27", "눅 4:16"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "마리아", "요셉"],
   },
   {
     id: "galilee",
@@ -79,6 +82,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 4:12-17", "막 1:14", "요 2:1-11"],
     category: "region",
     confidence: "high",
+    relatedPersons: ["예수님", "베드로", "안드레", "야고보", "요한"],
   },
   {
     id: "jericho",
@@ -90,6 +94,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["수 6:1-21", "눅 19:1-10", "막 10:46-52"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["여호수아", "라합", "엘리사", "삭개오", "바디매오"],
   },
   {
     id: "capernaum",
@@ -101,6 +106,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 4:13", "막 2:1-12", "요 6:24"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "베드로", "마태", "백부장"],
   },
   {
     id: "jordan-river",
@@ -112,6 +118,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["수 3:14-17", "왕하 5:14", "마 3:13-17"],
     category: "water",
     confidence: "high",
+    relatedPersons: ["여호수아", "엘리야", "엘리사", "세례 요한", "예수님"],
   },
   {
     id: "dead-sea",
@@ -123,6 +130,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["민 34:12", "신 3:17", "수 15:2"],
     category: "water",
     confidence: "high",
+    relatedPersons: ["아브라함", "롯"],
   },
   {
     id: "mount-sinai",
@@ -134,6 +142,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["출 19:1-20", "출 24:12-18", "신 5:2"],
     category: "mountain",
     confidence: "medium",
+    relatedPersons: ["모세", "아론", "엘리야"],
   },
   {
     id: "damascus",
@@ -145,6 +154,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["왕상 11:24", "행 9:1-19", "고후 11:32"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "아나니아", "엘리사", "나아만"],
   },
   {
     id: "nineveh",
@@ -156,6 +166,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["욘 1:2", "욘 3:1-10", "나 1:1"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["요나", "나훔"],
   },
   {
     id: "babylon",
@@ -167,6 +178,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["왕하 24:10-16", "단 1:1-7", "렘 29:1-14"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["다니엘", "느부갓네살", "에스겔", "느헤미야"],
   },
   {
     id: "wilderness-of-judea",
@@ -178,6 +190,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 3:1", "마 4:1-11", "막 1:4"],
     category: "wilderness",
     confidence: "high",
+    relatedPersons: ["다윗", "세례 요한", "예수님"],
   },
   {
     id: "mount-carmel",
@@ -189,6 +202,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["왕상 18:19-40", "왕하 2:25", "아 7:5"],
     category: "mountain",
     confidence: "high",
+    relatedPersons: ["엘리야", "엘리사"],
   },
   {
     id: "samaria",
@@ -200,6 +214,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["왕상 16:24", "요 4:4-42", "행 8:5-25"],
     category: "region",
     confidence: "high",
+    relatedPersons: ["아합", "이세벨", "엘리사", "예수님", "빌립"],
   },
   {
     id: "tarsus",
@@ -211,6 +226,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 9:11", "행 21:39", "행 22:3"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울"],
   },
   {
     id: "antioch",
@@ -222,6 +238,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 11:26", "행 13:1-3", "갈 2:11"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "바나바", "베드로"],
   },
   {
     id: "ephesus",
@@ -233,6 +250,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 19:1-10", "엡 1:1", "계 2:1-7"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "사도 요한", "아굴라", "브리스길라", "디모데"],
   },
   {
     id: "philippi",
@@ -244,6 +262,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 16:11-40", "빌 1:1"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "실라", "루디아", "에파브로디도"],
   },
   {
     id: "thessalonica",
@@ -255,6 +274,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 17:1-9", "살전 1:1-8"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "실라", "야손"],
   },
   {
     id: "athens",
@@ -266,6 +286,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 17:15-34"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "디오누시오", "다마리"],
   },
   {
     id: "corinth",
@@ -277,6 +298,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 18:1-18", "고전 1:1-2"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "아굴라", "브리스길라", "아볼로", "갈리오"],
   },
   {
     id: "rome",
@@ -288,6 +310,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 28:16-31", "롬 1:7"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "베드로", "네로"],
   },
   {
     id: "patmos",
@@ -299,6 +322,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["계 1:9"],
     category: "region",
     confidence: "high",
+    relatedPersons: ["사도 요한"],
   },
   {
     id: "smyrna",
@@ -310,6 +334,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["계 2:8-11"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 요한", "폴리캅"],
   },
   {
     id: "pergamum",
@@ -321,6 +346,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["계 2:12-17"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 요한", "안디바"],
   },
   {
     id: "thyatira",
@@ -332,6 +358,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 16:14", "계 2:18-29"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 요한", "루디아"],
   },
   {
     id: "sardis",
@@ -343,6 +370,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["계 3:1-6"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 요한"],
   },
   {
     id: "philadelphia",
@@ -354,6 +382,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["계 3:7-13"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 요한"],
   },
   {
     id: "laodicea",
@@ -365,6 +394,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["골 4:13-16", "계 3:14-22"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 요한", "에바브라"],
   },
   {
     id: "cana",
@@ -376,6 +406,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["요 2:1-11", "요 4:46"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "마리아", "나다나엘"],
   },
   {
     id: "bethsaida",
@@ -387,6 +418,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 11:21", "막 8:22-26", "눅 9:10-17", "요 1:44"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "베드로", "안드레", "빌립"],
   },
   {
     id: "nain",
@@ -398,6 +430,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["눅 7:11-17"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님"],
   },
   {
     id: "gerasa",
@@ -409,6 +442,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 8:28-34", "막 5:1-20", "눅 8:26-39"],
     category: "region",
     confidence: "high",
+    relatedPersons: ["예수님"],
   },
   {
     id: "caesarea-philippi",
@@ -420,6 +454,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 16:13-20", "막 8:27-30"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "베드로"],
   },
   {
     id: "sychar",
@@ -431,6 +466,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["요 4:5-42"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "야곱"],
   },
   {
     id: "bethany",
@@ -442,6 +478,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 21:17", "눅 10:38-42", "요 11:1-44"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "나사로", "마르다", "마리아"],
   },
   {
     id: "tyre-sidon",
@@ -453,6 +490,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 15:21-28", "막 7:24-30"],
     category: "region",
     confidence: "high",
+    relatedPersons: ["예수님", "이세벨", "히람"],
   },
   {
     id: "gethsemane",
@@ -464,6 +502,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["마 26:36-46", "막 14:32-42", "눅 22:39-46"],
     category: "wilderness",
     confidence: "high",
+    relatedPersons: ["예수님", "베드로", "야고보", "요한"],
   },
   {
     id: "caesarea-maritima",
@@ -475,6 +514,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 10:1-48", "행 23:23-35", "행 25:1-12"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "고넬료", "베드로", "빌립", "페스도"],
   },
   {
     id: "joppa",
@@ -486,6 +526,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 9:36-43", "행 10:9-23"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["베드로", "다비다", "피장 시몬", "요나"],
   },
   {
     id: "emmaus",
@@ -497,6 +538,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["눅 24:13-35"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["예수님", "글로바"],
   },
   {
     id: "berea",
@@ -508,6 +550,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 17:10-15"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "실라", "디모데"],
   },
   {
     id: "troas",
@@ -519,6 +562,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 16:8-10", "행 20:5-12", "고후 2:12"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "유두고"],
   },
   {
     id: "iconium",
@@ -530,6 +574,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 14:1-7"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "바나바"],
   },
   {
     id: "lystra",
@@ -541,6 +586,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 14:8-20", "행 16:1"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "디모데", "바나바"],
   },
   {
     id: "colossae",
@@ -552,6 +598,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["골 1:1-2", "몬 1:1"],
     category: "city",
     confidence: "high",
+    relatedPersons: ["사도 바울", "에바브라", "빌레몬", "오네시모"],
   },
   {
     id: "crete",
@@ -563,6 +610,7 @@ export const biblicalPlaces: BiblicalPlace[] = [
     bibleRefs: ["행 27:7-15", "딛 1:5"],
     category: "region",
     confidence: "high",
+    relatedPersons: ["사도 바울", "디도"],
   },
   {
     id: "malta",
@@ -731,5 +779,161 @@ export const biblicalPlaces: BiblicalPlace[] = [
     category: "mountain",
     confidence: "high",
     relatedPersons: ["모세"],
+  },
+  {
+    id: "susa",
+    biblicalName: "수산성",
+    modernName: "Shush / Susa",
+    region: "이란 후제스탄 주 (고대 바사/페르시아 궁전)",
+    coordinates: [32.1892, 48.2569],
+    description: "페르시아 제국의 겨울 궁전이 있던 대도시로, 에스더서 전체의 무대이자 느헤미야가 기도로 조국 재건을 준비한 왕궁이 있던 장소입니다.",
+    bibleRefs: ["에 1:2", "느 1:1", "단 8:2"],
+    category: "city",
+    confidence: "high",
+    relatedPersons: ["에스더", "모르드개", "느헤미야", "다니엘", "아하수에로"],
+  },
+  {
+    id: "land-of-uz",
+    biblicalName: "우스 땅",
+    modernName: "Land of Uz (Edom / Arabia border area)",
+    region: "에돔 / 아라비아 경계 (추정)",
+    coordinates: [30.5000, 35.5000],
+    description: "동방 사람 중 가장 으뜸이었던 의인 욥이 살았던 고향 땅으로, 극심한 고난 속에서도 순전을 지킨 욥기의 배경 무대입니다.",
+    bibleRefs: ["욥 1:1", "애 4:21"],
+    category: "wilderness",
+    confidence: "medium",
+    relatedPersons: ["욥", "엘리바스", "빌닷", "소발", "엘리후"],
+  },
+  {
+    id: "en-gedi",
+    biblicalName: "엔게디",
+    modernName: "Ein Gedi",
+    region: "이스라엘 사해 서쪽 유대 광야",
+    coordinates: [31.4642, 35.3897],
+    description: "사막 가운데 맑은 샘물이 솟아나는 오아시스로, 다윗이 사울 왕을 피해 숨었던 굴이 있던 장소이자 아가서에서 아름다운 포도원으로 노래된 거점입니다.",
+    bibleRefs: ["삼상 23:29", "아 1:14", "시 57:1"],
+    category: "wilderness",
+    confidence: "high",
+    relatedPersons: ["다윗", "솔로몬", "술람미 여인"],
+  },
+  {
+    id: "ophir",
+    biblicalName: "오빌",
+    modernName: "Ophir (Yemen / East Africa area)",
+    region: "남아라비아 / 동아프리카 (추정)",
+    coordinates: [15.3500, 44.2000],
+    description: "솔로몬 왕 시절 무역선이 다녀오며 성전 건축과 왕궁을 꾸미는 데 쓰인 최고 순도와 가치를 자랑하던 정제된 금(오빌의 금) 생산지입니다.",
+    bibleRefs: ["욥 28:16", "시 45:9", "역하 8:18"],
+    category: "region",
+    confidence: "medium",
+    relatedPersons: ["솔로몬", "다윗"],
+  },
+  {
+    id: "tirzah",
+    biblicalName: "디르사",
+    modernName: "Tell el-Far'ah",
+    region: "요단강 서안 세겜 북동쪽",
+    coordinates: [32.2858, 35.3347],
+    description: "아름다운 산세와 경관을 자랑하여 아가서에서 술람미 여인의 빼어난 아름다움을 예루살렘과 견주어 묘사할 때 노래된 도시입니다.",
+    bibleRefs: ["아 6:4", "왕상 14:17"],
+    category: "city",
+    confidence: "high",
+    relatedPersons: ["솔로몬", "술람미 여인"],
+  },
+  {
+    id: "ulai-river",
+    biblicalName: "울래 강",
+    modernName: "Eulaeus / Karkheh River",
+    region: "이란 수사(수산성) 인근",
+    coordinates: [32.2000, 48.3000],
+    description: "다니엘 선지자가 수산 궁 근처에서 두 뿔 달린 숫양과 숫염소의 묵시 환상을 보고 가브리엘 천사로부터 해석을 들었던 강변입니다.",
+    bibleRefs: ["단 8:2", "단 8:16"],
+    category: "water",
+    confidence: "high",
+    relatedPersons: ["다니엘", "가브리엘"],
+  },
+  {
+    id: "sheba",
+    biblicalName: "스바",
+    modernName: "Sheba / Marib",
+    region: "예멘 남아라비아",
+    coordinates: [15.3522, 45.3375],
+    description: "향료와 보석 무역으로 번성했던 남아라비아의 왕국으로, 스바 여왕이 솔로몬의 지혜와 여호와의 소문을 듣고 찾아와 난해한 질문으로 시험했던 무대입니다.",
+    bibleRefs: ["역하 9:1-12", "욥 1:15", "시 72:10"],
+    category: "region",
+    confidence: "high",
+    relatedPersons: ["스바 여왕", "솔로몬", "욥"],
+  },
+  {
+    id: "moab",
+    biblicalName: "모압",
+    modernName: "Moab / Kerak Plateau",
+    region: "요르단 중남부 (사해 동쪽 고원)",
+    coordinates: [31.5000, 35.7500],
+    description: "사해 동쪽에 위치한 고원 지대로, 흉년을 피해 온 나오미 가족이 거했던 곳이자 룻기 전체의 배경이 되는 이방 여인 룻의 고향입니다.",
+    bibleRefs: ["룻 1:1-5", "시 60:8", "역하 20:1"],
+    category: "region",
+    confidence: "high",
+    relatedPersons: ["룻", "나오미", "엘리멜렉", "발락"],
+  },
+  {
+    id: "mount-zion",
+    biblicalName: "시온산",
+    modernName: "Mount Zion",
+    region: "예루살렘 남서쪽 언덕",
+    coordinates: [31.7717, 35.2286],
+    description: "시편에서 100회 이상 찬양된 하나님의 거룩한 산이자 다윗성이 있던 곳으로, 하나님 임재와 예루살렘의 영적 회복을 상징하는 산입니다.",
+    bibleRefs: ["시 2:6", "시 48:1-3", "시 125:1", "역상 11:5"],
+    category: "mountain",
+    confidence: "high",
+    relatedPersons: ["다윗", "솔로몬"],
+  },
+  {
+    id: "gibeon",
+    biblicalName: "기브온",
+    modernName: "Al-Jib",
+    region: "요단강 서안 (예루살렘 북서쪽)",
+    coordinates: [31.8483, 35.1844],
+    description: "솔로몬 왕이 왕위에 오른 후 일천번제를 드리고 밤 꿈에 하나님께 듣는 지혜를 얻었던 거룩한 산당이 있던 성읍입니다.",
+    bibleRefs: ["역하 1:3-13", "느 3:7", "느 7:25"],
+    category: "city",
+    confidence: "high",
+    relatedPersons: ["솔로몬", "여호수아", "다윗"],
+  },
+  {
+    id: "euphrates",
+    biblicalName: "유브라데 강",
+    modernName: "Euphrates River",
+    region: "터키 / 시리아 / 이라크 대강",
+    coordinates: [34.5000, 41.5000],
+    description: "에스라와 느헤미야서에서 '강 건너편'이라 불리는 서시아의 대강으로, 시편 137편 포로들이 강가에 앉아 시온을 기억하며 울었던 강입니다.",
+    bibleRefs: ["스 4:10", "느 2:7", "역상 5:9", "시 137:1"],
+    category: "water",
+    confidence: "high",
+    relatedPersons: ["에스라", "느헤미야", "아브라함"],
+  },
+  {
+    id: "plain-of-dura",
+    biblicalName: "두라 평지",
+    modernName: "Plain of Dura",
+    region: "이라크 바벨론 남쪽 평원",
+    coordinates: [32.4833, 44.4333],
+    description: "다니엘 3장에서 느부갓네살 왕이 거대한 금 신상을 세우고 절하게 했을 때, 사드락과 메삭과 아벳느고가 신앙 절개를 지켜 극렬히 타는 풀무불 속에서 구원받은 평원입니다.",
+    bibleRefs: ["단 3:1-30"],
+    category: "wilderness",
+    confidence: "high",
+    relatedPersons: ["사드락", "메삭", "아벳느고", "느부갓네살"],
+  },
+  {
+    id: "ahava-river",
+    biblicalName: "아하와 강",
+    modernName: "Ahava River",
+    region: "이라크 바벨론 운하 지대",
+    coordinates: [33.3000, 43.5000],
+    description: "에스라 8장에서 학사 에스라가 2차 포로 귀환자들을 이끌고 예루살렘으로 귀환하기 전, 백성들과 함께 금식하며 평탄한 길을 기도했던 강변입니다.",
+    bibleRefs: ["스 8:15-31"],
+    category: "water",
+    confidence: "medium",
+    relatedPersons: ["에스라"],
   },
 ];
