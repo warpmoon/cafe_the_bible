@@ -7,12 +7,12 @@ import styles from './FaithCheckPage.module.css';
 type GraphRange = 'week' | 'month' | 'year';
 
 const TEMP_CHECK_ITEMS = [
-  { id: 'word', label: '말씀을 읽고 마음에 남은 구절을 붙잡았나요?' },
-  { id: 'prayer', label: '정해진 시간에 기도했나요?' },
-  { id: 'gratitude', label: '감사한 일을 한 가지 이상 기록했나요?' },
-  { id: 'obedience', label: '오늘 순종해야 할 일을 실천했나요?' },
-  { id: 'love', label: '가까운 사람에게 사랑을 표현했나요?' },
-  { id: 'repentance', label: '돌아볼 죄와 태도를 하나님 앞에 고백했나요?' },
+  { id: 'self_love', label: '주님이 보증한 존귀한 나를 사랑했는가?' },
+  { id: 'fellowship', label: '하나님과 교제하는 시간을 기뻐했는가?' },
+  { id: 'priority', label: '내 욕망보다 하나님을 사랑했는가?' },
+  { id: 'creation', label: '하나님의 창조세계를 바라보며 경탄했는가?' },
+  { id: 'neighbor', label: '내 곁의 사람을 하나님이 주신 선물로 여겼는가?' },
+  { id: 'record', label: '주님과 동행한 시간을 기록했는가?' },
 ];
 
 const formatDateKey = (date: Date) => {

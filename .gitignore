@@ -223,3 +223,4 @@ dist/
 dist-ssr/
 *.localdeploy.sh
 backend/db.sqlite3
+backend/db.sqlite3
